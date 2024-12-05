@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ConnectButton, lightTheme, useActiveAccount } from "thirdweb/react";
 import { client } from "@/app/client";
@@ -54,7 +54,9 @@ export function Navbar() {
 
   return (
     <div className="flex justify-between items-center mb-6">
-      <h1 className="text-2xl font-bold">Weather Prediction Market</h1>
+      <h1 className="text-2xl font-bold">
+        <span className="text-[#4ad4ab]">Weather</span> Prediction Market
+      </h1>
       <div className="items-center flex gap-2">
         {account && (
           <Button
