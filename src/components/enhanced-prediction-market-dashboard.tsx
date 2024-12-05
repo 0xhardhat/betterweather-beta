@@ -1,12 +1,14 @@
 'use client'
 
-import { useReadContract } from 'thirdweb/react'
+// import { useReadContract } from 'thirdweb/react'
 // import { contract } from '@/constants/contract'
-import { singlepmcontract } from '@/constants/contract'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MarketCard } from './marketCard'
+// import { singlepmcontract } from '@/constants/contract'
+import { Tabs, 
+    // TabsContent, 
+    TabsList, TabsTrigger } from "@/components/ui/tabs"
+// import { MarketCard } from './marketCard'
 import { Navbar } from './navbar'
-import { MarketCardSkeleton } from './market-card-skeleton'
+// import { MarketCardSkeleton } from './market-card-skeleton'
 import { Footer } from "./footer"
 
 export function EnhancedPredictionMarketDashboard() {
@@ -17,9 +19,9 @@ export function EnhancedPredictionMarketDashboard() {
     // }); 
 
     // Show 6 skeleton cards while loading
-    const skeletonCards = Array.from({ length: 6 }, (_, i) => (
-        <MarketCardSkeleton key={`skeleton-${i}`} />
-    ));
+    // const skeletonCards = Array.from({ length: 6 }, (_, i) => (
+    //     <MarketCardSkeleton key={`skeleton-${i}`} />
+    // ));
 
     return (
         <div className="min-h-screen flex flex-col">

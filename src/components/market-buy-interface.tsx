@@ -1,13 +1,15 @@
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+// import { Input } from "./ui/input";
 import { useState, useRef, useEffect } from "react";
 import { useActiveAccount, useSendAndConfirmTransaction } from "thirdweb/react";
-import { prepareContractCall, readContract, toWei } from "thirdweb";
-import { contract, tokenContract } from "@/constants/contract";
+import { 
+    // prepareContractCall, 
+    readContract, toWei } from "thirdweb";
+import { singlepmcontract, tokenContract } from "@/constants/contract";
 import { approve } from "thirdweb/extensions/erc20";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useToast } from "@/components/ui/use-toast"
+// import { useToast } from "@/components/ui/use-toast"
 
 // Types for the component props
 interface MarketBuyInterfaceProps {
@@ -23,11 +25,13 @@ interface MarketBuyInterfaceProps {
 type BuyingStep = 'initial' | 'allowance' | 'confirm';
 type Option = 'A' | 'B' | null;
 
-export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps) {
+export function MarketBuyInterface({ 
+    // marketId, 
+    market }: MarketBuyInterfaceProps) {
     // Blockchain interactions
     const account = useActiveAccount();
     const { mutateAsync: mutateTransaction } = useSendAndConfirmTransaction();
-    const { toast } = useToast()
+    // const { toast } = useToast()
 
     // UI state management
     const [isBuying, setIsBuying] = useState(false);
@@ -40,7 +44,7 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
     const [amount, setAmount] = useState(0);
     const [buyingStep, setBuyingStep] = useState<BuyingStep>('initial');
     const [isApproving, setIsApproving] = useState(false);
-    const [isConfirming, setIsConfirming] = useState(false);
+    // const [isConfirming, setIsConfirming] = useState(false);
 
     // Add to state variables
     const [error, setError] = useState<string | null>(null);
@@ -88,7 +92,7 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
             const userAllowance = await readContract({
                 contract: tokenContract,
                 method: "function allowance(address owner, address spender) view returns (uint256)",
-                params: [account?.address as string, contract.address]
+                params: [account?.address as string, singlepmcontract.address]
             });
 
             setBuyingStep(userAllowance < BigInt(toWei(amount.toString())) ? 'allowance' : 'confirm');
@@ -103,7 +107,7 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
         try {
             const tx = await approve({
                 contract: tokenContract,
-                spender: contract.address,
+                spender: singlepmcontract.address,
                 amount: amount
             });
             await mutateTransaction(tx);
@@ -116,41 +120,41 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
     };
 
     // Handle share purchase transaction
-    const handleConfirm = async () => {
-        if (!selectedOption || amount <= 0) {
-            setError("Must select an option and enter an amount greater than 0");
-            return;
-        }
+    // const handleConfirm = async () => {
+    //     if (!selectedOption || amount <= 0) {
+    //         setError("Must select an option and enter an amount greater than 0");
+    //         return;
+    //     }
 
-        setIsConfirming(true);
-        try {
-            const tx = await prepareContractCall({
-                contract,
-                method: "function buyShares(uint256 _marketId, bool _isOptionA, uint256 _amount)",
-                params: [BigInt(marketId), selectedOption === 'A', BigInt(toWei(amount.toString()))]
-            });
-            await mutateTransaction(tx);
+    //     setIsConfirming(true);
+    //     try {
+    //         const tx = await prepareContractCall({
+    //             contract,
+    //             method: "function buyShares(uint256 _marketId, bool _isOptionA, uint256 _amount)",
+    //             params: [BigInt(marketId), selectedOption === 'A', BigInt(toWei(amount.toString()))]
+    //         });
+    //         await mutateTransaction(tx);
             
-            // Show success toast
-            toast({
-                title: "Purchase Successful!",
-                description: `You bought ${amount} ${selectedOption === 'A' ? market.optionA : market.optionB} shares`,
-                duration: 5000, // 5 seconds
-            })
+    //         // Show success toast
+    //         toast({
+    //             title: "Purchase Successful!",
+    //             description: `You bought ${amount} ${selectedOption === 'A' ? market.optionA : market.optionB} shares`,
+    //             duration: 5000, // 5 seconds
+    //         })
             
-            handleCancel();
-        } catch (error) {
-            console.error(error);
-            // Optionally show error toast
-            toast({
-                title: "Purchase Failed",
-                description: "There was an error processing your purchase",
-                variant: "destructive",
-            })
-        } finally {
-            setIsConfirming(false);
-        }
-    };
+    //         handleCancel();
+    //     } catch (error) {
+    //         console.error(error);
+    //         // Optionally show error toast
+    //         toast({
+    //             title: "Purchase Failed",
+    //             description: "There was an error processing your purchase",
+    //             variant: "destructive",
+    //         })
+    //     } finally {
+    //         setIsConfirming(false);
+    //     }
+    // };
 
     // Render the component
     return (
@@ -228,7 +232,7 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
                                     </span> share(s).
                                 </p>
                                 <div className="flex justify-end">
-                                    <Button 
+                                    {/* <Button 
                                         onClick={handleConfirm} 
                                         className="mb-2"
                                         disabled={isConfirming}
@@ -241,15 +245,15 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
                                         ) : (
                                             'Confirm'
                                         )}
-                                    </Button>
-                                    <Button 
+                                    </Button> */}
+                                    {/* <Button 
                                         onClick={handleCancel} 
                                         className="ml-2" 
                                         variant="outline"
                                         disabled={isConfirming}
                                     >
                                         Cancel
-                                    </Button>
+                                    </Button> */}
                                 </div>
                             </div>
                         ) : (
@@ -261,7 +265,7 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
                                 <div className="flex flex-col gap-1 mb-4">
                                     <div className="flex items-center gap-2 overflow-visible">
                                         <div className="flex-grow relative">
-                                            <Input
+                                            {/* <Input
                                                 type="number"
                                                 min="0"
                                                 step="1"
@@ -281,7 +285,7 @@ export function MarketBuyInterface({ marketId, market }: MarketBuyInterfaceProps
                                                     "w-full",
                                                     error && "border-red-500 focus-visible:ring-red-500"
                                                 )}
-                                            />
+                                            /> */}
                                         </div>
                                         <span className="font-bold whitespace-nowrap">
                                             {selectedOption === 'A' ? market.optionA : market.optionB}
