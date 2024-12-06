@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Weather PM",
+  title: "Better Weather",
   description:
     "The innovative decentralized prediction market platform that allows users to trade on the outcomes of future weather events.",
 };

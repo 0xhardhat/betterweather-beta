@@ -54,9 +54,14 @@ export function Navbar() {
 
   return (
     <div className="flex justify-between items-center mb-6">
-      <h1 className="text-2xl font-bold">
-        <span className="text-[#4ad4ab]">Weather</span> Prediction Market
-      </h1>
+      {/* <h1 className="text-2xl font-bold">
+        <span className="text-[#4ad4ab]">Better</span> Weather
+      </h1> */}
+      <img
+        src="/logo-light.png"
+        alt="logo in light theme"
+        className="lg:w-[226.8px] lg:h-[30px] w-[151.2px] h-[20px]"
+      />
       <div className="items-center flex gap-2">
         {account && (
           <Button
