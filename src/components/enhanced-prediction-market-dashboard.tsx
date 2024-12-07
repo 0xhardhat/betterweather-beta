@@ -27,7 +27,7 @@ export function EnhancedPredictionMarketDashboard() {
         <Navbar />
         <div className="mb-4">
           <img
-            src="https://res.cloudinary.com/dq9alywlv/image/upload/v1733418503/Better_Weather_mdsd0f.png"
+            src="https://res.cloudinary.com/dq9alywlv/image/upload/v1733547236/Better_Weather_4_1_uqf1ds.png"
             alt="Placeholder Banner"
             className="w-full h-auto rounded-lg"
           />
