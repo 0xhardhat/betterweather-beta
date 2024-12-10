@@ -53,7 +53,7 @@ export function Navbar() {
   };
 
   return (
-    <div className="flex justify-between items-center mb-6">
+    <div className="flex items-center mb-6 gap-4 md:gap-0 md:flex-row md:justify-between lg:flex-row lg:justify-between lg:gap-0 flex-col">
       {/* <h1 className="text-2xl font-bold">
         <span className="text-[#4ad4ab]">Better</span> Weather
       </h1> */}

@@ -33,6 +33,10 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --tab-bg: 0 0% 9%;        /* Black background */
+    --tab-text: 0 0% 98%; /* White text */
+    --tab-bg-active: 0 0% 20%; /* Slightly lighter black for active tab */
+    --tab-text-active: 0 0% 100%; /* White text for active tab */
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -59,14 +63,20 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --tab-bg: 0 0% 0%; /* Black background */
+    --tab-text: 0 0% 100%; /* White text */
+    --tab-bg-active: 0 0% 20%; /* Slightly lighter black for active tab */
+    --tab-text-active: 0 0% 100%; /* White text for active tab */
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    /* Add these new custom properties */
   }
   body {
     @apply bg-background text-foreground;
+    /* Add these new custom properties for dark mode */
   }
 }
