@@ -12,7 +12,7 @@ import { MarketCard } from "./marketCard";
 import { Navbar } from "./navbar";
 import { MarketCardSkeleton } from "./market-card-skeleton";
 import { Footer } from "./footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function EnhancedPredictionMarketDashboard() {
   const [category, setCategory] = useState<string>("all markets");
