@@ -170,7 +170,7 @@ export function EnhancedPredictionMarketDashboard() {
                 </AccordionItem>
               </Accordion>
               <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
+                <AccordionItem value="item-2">
                   <AccordionTrigger>Resolved</AccordionTrigger>
                   <AccordionContent>
                     <div className="mt-4">
