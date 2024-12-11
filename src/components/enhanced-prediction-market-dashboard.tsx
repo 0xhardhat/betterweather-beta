@@ -2,7 +2,7 @@
 
 import { useReadContract } from "thirdweb/react";
 import { contract } from "@/constants/contract";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   CategoryTabs,
   CategoryTabsList,
@@ -13,6 +13,12 @@ import { Navbar } from "./navbar";
 import { MarketCardSkeleton } from "./market-card-skeleton";
 import { Footer } from "./footer";
 import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 
 export function EnhancedPredictionMarketDashboard() {
   const [category, setCategory] = useState<string>("all markets");
@@ -62,7 +68,7 @@ export function EnhancedPredictionMarketDashboard() {
             <CategoryTabsTrigger value="wind">Wind</CategoryTabsTrigger>
           </CategoryTabsList>
         </CategoryTabs>
-        <Tabs defaultValue="active" className="w-full mt-3">
+        {/* <Tabs defaultValue="active" className="w-full mt-3">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="active">Active</TabsTrigger>
             <TabsTrigger value="pending">
@@ -120,7 +126,74 @@ export function EnhancedPredictionMarketDashboard() {
               </TabsContent>
             </>
           )}
-        </Tabs>
+        </Tabs> */}
+        <div className="mt-3">
+          {isLoadingMarketCount ? (
+            <div className="mt-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {skeletonCards}
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {Array.from({ length: Number(marketCount) }, (_, index) => (
+                  <MarketCard
+                    key={index}
+                    index={index}
+                    filter="active"
+                    category={category}
+                  />
+                ))}
+              </div>
+
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Pending</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="mt-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {Array.from(
+                          { length: Number(marketCount) },
+                          (_, index) => (
+                            <MarketCard
+                              key={index}
+                              index={index}
+                              filter="pending"
+                              category={category}
+                            />
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Resolved</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="mt-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {Array.from(
+                          { length: Number(marketCount) },
+                          (_, index) => (
+                            <MarketCard
+                              key={index}
+                              index={index}
+                              filter="resolved"
+                              category={category}
+                            />
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </>
+          )}
+        </div>
       </div>
       <Footer />
     </div>
