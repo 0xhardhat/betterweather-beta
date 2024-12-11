@@ -28,10 +28,6 @@ export function EnhancedPredictionMarketDashboard() {
     <MarketCardSkeleton key={`skeleton-${i}`} />
   ));
 
-  useEffect(() => {
-    console.log("Current category:", category);
-  }, [category]); // This effect runs whenever 'category' changes
-
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex-grow container mx-auto p-4">
