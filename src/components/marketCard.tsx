@@ -75,7 +75,7 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
   const { data: sharesBalanceData } = useReadContract({
     contract,
     method:
-      "function getSharesBalance(uint256 _marketId, address _user) view returns (uint256 optionAShares, uint256 optionBShares)",
+      "function getSharesBalance(uint256 _marketId, address _user) view returns (uint256 OptionAShares, uint256 optionBShares)",
     params: [BigInt(index), account?.address as string],
   });
 
