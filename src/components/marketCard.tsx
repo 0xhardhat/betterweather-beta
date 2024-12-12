@@ -150,6 +150,7 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
                   outcome={market.outcome}
                   optionA={market.optionA}
                   optionB={market.optionB}
+                  sharesbalance={sharesBalance}
                 />
               ) : (
                 <MarketPending />

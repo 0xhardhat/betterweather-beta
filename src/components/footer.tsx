@@ -35,7 +35,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="https://github.com/egolessengineer/PredictionMarket-beta"
+            href="https://github.com/0xhardhat/betterweather-beta"
             target="_blank"
             rel="noreferrer"
           >
