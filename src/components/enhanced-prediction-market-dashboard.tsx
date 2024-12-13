@@ -11,7 +11,7 @@ import {
 import { MarketCard } from "./marketCard";
 import { Navbar } from "./navbar";
 import { MarketCardSkeleton } from "./market-card-skeleton";
-import { Icon } from "@iconify/react/dist/iconify.js";
+// import { Icon } from "@iconify/react/dist/iconify.js";
 import { Footer } from "./footer";
 import { useState } from "react";
 import {
@@ -146,10 +146,10 @@ export function EnhancedPredictionMarketDashboard() {
                     category={category}
                   />
                 ))}
-                <Icon
+                {/* <Icon
                   icon="mingcute:loading-fill"
                   className="spin text-5xl text-black self-center w-10 h-10"
-                />
+                /> */}
                 {/* <Icon icon={windIcon} width="24" height="24" /> */}
               </div>
 
