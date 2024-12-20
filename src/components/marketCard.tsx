@@ -1,7 +1,7 @@
 import {
   Card,
   CardContent,
-  CardFooter,
+  // CardFooter,
   CardHeader,
   CardTitle,
 } from "./ui/card";
@@ -13,7 +13,14 @@ import { MarketCardSkeleton } from "./market-card-skeleton";
 import { MarketResolved } from "./market-resolved";
 import { MarketPending } from "./market-pending";
 import { MarketBuyInterface } from "./market-buy-interface";
-import { MarketSharesDisplay } from "./market-shares-display";
+// import { MarketSharesDisplay } from "./market-shares-display";
+import {
+  CustomCard,
+  // CustomCardContent,
+  CustomCardHeader,
+  CustomCardTitle,
+} from "./ui/customcard";
+import { CustomMarketProgress } from "./market-progress-custom";
 
 // Props for the MarketCard component
 // index is the market id
@@ -125,50 +132,99 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
   }
 
   return (
-    <Card key={index} className="flex flex-col">
-      {isLoadingMarketData ? (
-        <MarketCardSkeleton />
-      ) : (
-        <>
-          <CardHeader>
-            {market && <MarketTime endTime={market.endTime} />}
-            <CardTitle>{market?.question}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {market && (
-              <MarketProgress
-                optionA={market.optionA}
-                optionB={market.optionB}
-                totalOptionAShares={market.totalOptionAShares}
-                totalOptionBShares={market.totalOptionBShares}
-              />
-            )}
-            {new Date(Number(market?.endTime) * 1000) < new Date() ? (
-              market?.resolved ? (
-                <MarketResolved
-                  marketId={index}
-                  outcome={market.outcome}
-                  optionA={market.optionA}
-                  optionB={market.optionB}
-                  sharesbalance={sharesBalance}
-                />
-              ) : (
-                <MarketPending />
-              )
-            ) : (
-              <MarketBuyInterface marketId={index} market={market!} />
-            )}
-          </CardContent>
-          <CardFooter>
+    <>
+      {filter == "active" && (
+        <Card key={index} className="flex flex-col">
+          {isLoadingMarketData ? (
+            <MarketCardSkeleton />
+          ) : (
+            <>
+              <CardHeader>
+                {market && (
+                  <MarketTime
+                    filter={filter}
+                    endTime={market.endTime}
+                    category={market?.category}
+                  />
+                )}
+                <CardTitle>{market?.question}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {market && (
+                  <MarketProgress
+                    optionA={market.optionA}
+                    optionB={market.optionB}
+                    totalOptionAShares={market.totalOptionAShares}
+                    totalOptionBShares={market.totalOptionBShares}
+                  />
+                )}
+                {new Date(Number(market?.endTime) * 1000) < new Date() ? (
+                  market?.resolved ? (
+                    <MarketResolved
+                      marketId={index}
+                      outcome={market.outcome}
+                      optionA={market.optionA}
+                      optionB={market.optionB}
+                      sharesbalance={sharesBalance}
+                    />
+                  ) : (
+                    <MarketPending />
+                  )
+                ) : (
+                  <MarketBuyInterface marketId={index} market={market!} />
+                )}
+              </CardContent>
+              {/* <CardFooter>
             {market && sharesBalance && (
               <MarketSharesDisplay
                 market={market}
                 sharesBalance={sharesBalance}
               />
             )}
-          </CardFooter>
-        </>
+          </CardFooter> */}
+            </>
+          )}
+        </Card>
       )}
-    </Card>
+      {(filter == "pending" || filter == "resolved") && (
+        <CustomCard key={index} className="flex flex-col w-full">
+          {isLoadingMarketData ? (
+            <MarketCardSkeleton />
+          ) : (
+            <>
+              <CustomCardHeader>
+                {market && (
+                  <MarketTime
+                    filter={filter}
+                    endTime={market.endTime}
+                    category={market?.category}
+                  />
+                )}
+                <div className="w-full flex flex-col gap-4 md:gap-1 md:flex-row justify-between">
+                  <CustomCardTitle>{market?.question}</CustomCardTitle>
+                  {market && (
+                    <CustomMarketProgress
+                      optionA={market.optionA}
+                      optionB={market.optionB}
+                      totalOptionAShares={market.totalOptionAShares}
+                      totalOptionBShares={market.totalOptionBShares}
+                    />
+                  )}
+                </div>
+              </CustomCardHeader>
+              {/* <CustomCardContent></CustomCardContent> */}
+              {/* <CardFooter>
+            {market && sharesBalance && (
+              <MarketSharesDisplay
+                market={market}
+                sharesBalance={sharesBalance}
+              />
+            )}
+          </CardFooter> */}
+            </>
+          )}
+        </CustomCard>
+      )}
+    </>
   );
 }

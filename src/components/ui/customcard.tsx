@@ -2,22 +2,22 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-const Card = React.forwardRef<
+const CustomCard = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "flex flex-col justify-between rounded-3xl border-none bg-card text-card-foreground shadow-sm hover:bg-gray-200 cursor-pointer dark:bg-[#191B26] dark:hover:bg-[#212431] overflow-hidden transition-transform duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg ",
+      "w-full flex flex-col justify-between rounded-3xl border-none bg-card text-card-foreground shadow-sm hover:bg-gray-200 cursor-pointer dark:bg-[#191B26] dark:hover:bg-[#212431] overflow-hidden transition-transform duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg ",
       className
     )}
     {...props}
   />
 ));
-Card.displayName = "Card";
+CustomCard.displayName = "Card";
 
-const CardHeader = React.forwardRef<
+const CustomCardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -27,13 +27,18 @@ const CardHeader = React.forwardRef<
     {...props}
   />
 ));
-CardHeader.displayName = "CardHeader";
+CustomCardHeader.displayName = "CardHeader";
 
-const CardTitle = React.forwardRef<
+const CustomCardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <div className="flex flex-row justify-between items-stretch pt-3 gap-2">
+  <div className="flex flex-row items-center gap-5">
+    <img
+      src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
+      alt="placeholder"
+      className="h-12 w-12 rounded-2xl"
+    />
     <h3
       ref={ref}
       className={cn(
@@ -42,16 +47,11 @@ const CardTitle = React.forwardRef<
       )}
       {...props}
     />
-    <img
-      src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
-      alt="placeholder"
-      className="h-12 w-12 rounded-2xl"
-    />
   </div>
 ));
-CardTitle.displayName = "CardTitle";
+CustomCardTitle.displayName = "CardTitle";
 
-const CardDescription = React.forwardRef<
+const CustomCardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
@@ -61,17 +61,17 @@ const CardDescription = React.forwardRef<
     {...props}
   />
 ));
-CardDescription.displayName = "CardDescription";
+CustomCardDescription.displayName = "CardDescription";
 
-const CardContent = React.forwardRef<
+const CustomCardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-[6px] mt-[-3px]", className)} {...props} />
+  <div ref={ref} className={cn("px-6 mt-[-3px]", className)} {...props} />
 ));
-CardContent.displayName = "CardContent";
+CustomCardContent.displayName = "CardContent";
 
-const CardFooter = React.forwardRef<
+const CustomCardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -81,13 +81,13 @@ const CardFooter = React.forwardRef<
     {...props}
   />
 ));
-CardFooter.displayName = "CardFooter";
+CustomCardFooter.displayName = "CardFooter";
 
 export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
+  CustomCard,
+  CustomCardContent,
+  CustomCardHeader,
+  CustomCardTitle,
+  CustomCardFooter,
+  CustomCardDescription,
 };

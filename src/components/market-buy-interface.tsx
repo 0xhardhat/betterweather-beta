@@ -1,5 +1,3 @@
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { useState, useRef, useEffect } from "react";
 import { useActiveAccount, useSendAndConfirmTransaction } from "thirdweb/react";
 import { prepareContractCall, readContract, toWei } from "thirdweb";
@@ -8,6 +6,8 @@ import { approve } from "thirdweb/extensions/erc20";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast";
+import { CustomInput } from "./ui/custominput";
+import { Button } from "./ui/button";
 
 // Types for the component props
 interface MarketBuyInterfaceProps {
@@ -170,7 +170,11 @@ export function MarketBuyInterface({
   // Render the component
   return (
     <div
-      className="relative transition-[height] duration-200 ease-in-out overflow-hidden"
+      className={`relative transition-[height] duration-200 ease-in-out ${
+        buyingStep === "allowance" || buyingStep === "confirm"
+          ? ""
+          : "overflow-hidden"
+      } mt-6`}
       style={{ height: containerHeight }}
     >
       <div
@@ -182,17 +186,18 @@ export function MarketBuyInterface({
       >
         {!isBuying ? (
           // Initial option selection buttons
-          <div className="flex justify-between gap-4 mb-4">
+          <div className="flex justify-between gap-[2px] items-center">
             <Button
-              className="flex-1"
+              className="flex-1 h-14 rounded-none rounded-bl-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
               onClick={() => handleBuy("A")}
               aria-label={`Vote ${market.optionA} for "${market.question}"`}
               disabled={!account}
             >
               {market.optionA}
             </Button>
+            <div className="bg-[#262937] h-10 w-[2px] rounded-full" />
             <Button
-              className="flex-1"
+              className="flex-1 h-14 rounded-none rounded-br-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
               onClick={() => handleBuy("B")}
               aria-label={`Vote ${market.optionB} for "${market.question}"`}
               disabled={!account}
@@ -202,10 +207,10 @@ export function MarketBuyInterface({
           </div>
         ) : (
           // Buy interface with different steps
-          <div className="flex flex-col mb-4">
+          <div className="flex flex-col">
             {buyingStep === "allowance" ? (
               // Approval step
-              <div className="flex flex-col border-2 border-gray-200 rounded-lg p-4">
+              <div className="flex flex-col border-[1px] border-[#6DDABA] mt-[-4px] p-4 rounded-2xl">
                 <h2 className="text-lg font-bold mb-4">Approval Needed</h2>
                 <p className="mb-4">
                   You need to approve the transaction before proceeding.
@@ -213,7 +218,7 @@ export function MarketBuyInterface({
                 <div className="flex justify-end">
                   <Button
                     onClick={handleSetApproval}
-                    className="mb-2"
+                    className="mb-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     disabled={isApproving}
                   >
                     {isApproving ? (
@@ -227,8 +232,7 @@ export function MarketBuyInterface({
                   </Button>
                   <Button
                     onClick={handleCancel}
-                    className="ml-2"
-                    variant="outline"
+                    className="ml-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     disabled={isApproving}
                   >
                     Cancel
@@ -237,7 +241,7 @@ export function MarketBuyInterface({
               </div>
             ) : buyingStep === "confirm" ? (
               // Confirmation step
-              <div className="flex flex-col border-2 border-gray-200 rounded-lg p-4">
+              <div className="flex flex-col border-[1px] border-[#6DDABA] mt-[-4px] p-4 rounded-2xl">
                 <h2 className="text-lg font-bold mb-4">Confirm Transaction</h2>
                 <p className="mb-4">
                   You are about to buy{" "}
@@ -250,7 +254,7 @@ export function MarketBuyInterface({
                 <div className="flex justify-end">
                   <Button
                     onClick={handleConfirm}
-                    className="mb-2"
+                    className="mb-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     disabled={isConfirming}
                   >
                     {isConfirming ? (
@@ -264,7 +268,7 @@ export function MarketBuyInterface({
                   </Button>
                   <Button
                     onClick={handleCancel}
-                    className="ml-2"
+                    className="ml-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     variant="outline"
                     disabled={isConfirming}
                   >
@@ -274,16 +278,11 @@ export function MarketBuyInterface({
               </div>
             ) : (
               // Amount input step
-              <div className="flex flex-col">
-                <span className="text-xs text-gray-500 mb-1">
-                  {`1 ${
-                    selectedOption === "A" ? market.optionA : market.optionB
-                  } = 1 PREDICT`}
-                </span>
-                <div className="flex flex-col gap-1 mb-4">
-                  <div className="flex items-center gap-2 overflow-visible">
+              <div className="flex flex-col justify-between">
+                <div className="flex flex-col gap-1 mb-4 mx-6">
+                  <div className="flex items-center gap-7 overflow-visible">
                     <div className="flex-grow relative">
-                      <Input
+                      <CustomInput
                         type="number"
                         min="1"
                         max="100"
@@ -309,24 +308,38 @@ export function MarketBuyInterface({
                         )}
                       />
                     </div>
-                    <span className="font-bold whitespace-nowrap">
+                    <span
+                      className={`font-bold whitespace-nowrap ${
+                        selectedOption === "A"
+                          ? "text-[#6DDABA]"
+                          : "text-[#FF8989]"
+                      }`}
+                    >
                       {selectedOption === "A" ? market.optionA : market.optionB}
                     </span>
                   </div>
-                  <div className="min-h-[20px]">
+                  <div className="min-h-[15px]">
                     {error && (
                       <span className="text-sm text-red-500">{error}</span>
                     )}
                   </div>
                 </div>
-                <div className="flex justify-between gap-4">
-                  <Button onClick={checkApproval} className="flex-1">
+                <span className="text-xs text-gray-500 mb-1 mx-6">
+                  {`1 ${
+                    selectedOption === "A" ? market.optionA : market.optionB
+                  } = 1 Predict`}
+                </span>
+                <div className="flex justify-between gap-[2px] items-center">
+                  <Button
+                    onClick={checkApproval}
+                    className="flex-1 h-14 rounded-none rounded-bl-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+                  >
                     Confirm
                   </Button>
+                  <div className="bg-[#262937] h-10 w-[2px] rounded-full" />
                   <Button
                     onClick={handleCancel}
-                    variant="outline"
-                    className="flex-1"
+                    className="flex-1 h-14 rounded-none rounded-br-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
                   >
                     Cancel
                   </Button>
