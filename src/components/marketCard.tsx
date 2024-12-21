@@ -59,7 +59,6 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
     contract,
     method:
       "function getMarketInfo(uint256 _marketId) view returns (string question, string category, string optionA, string optionB, uint256 endTime, uint8 outcome, uint256 totalOptionAShares, uint256 totalOptionBShares, bool resolved)",
-    //   "function getMarketInfo(uint256 _marketId) view returns (string question, string optionA, string optionB, uint256 endTime, uint8 outcome, uint256 totalOptionAShares, uint256 totalOptionBShares, bool resolved)",
     params: [BigInt(index)],
   });
 

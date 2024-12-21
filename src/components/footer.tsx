@@ -21,9 +21,9 @@ export function Footer() {
           rel="noreferrer"
         > */}
         <img
-          src="/BW-logo-footer.svg"
+          src="/HNY-BW.svg"
           alt="logo in dark theme"
-          className="hidden sm:w-36 sm:h-auto sm:flex cursor-pointer"
+          className="hidden sm:w-40 sm:h-auto sm:flex cursor-pointer"
           onClick={() => {
             router.push("/");
           }}

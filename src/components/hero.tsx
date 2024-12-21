@@ -21,7 +21,7 @@ const Hero = () => {
                 The
               </span>
               <span className="text-[#F9FCFF] text-[48px] sm:text-[64px] font-semibold">
-                Weather .
+                Weather.
               </span>
             </div>
           </div>

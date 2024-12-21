@@ -85,11 +85,11 @@ export function EnhancedPredictionMarketDashboard() {
             />
             {/* market category list */}
             <div className="z-20 w-full flex flex-col gap-5 items-center lg:w-full lg:flex-row lg:gap-20 lg:justify-between lg:px-5 overflow-hidden">
-              <div className="flex flex-col items-center gap-2 sm:gap-3 sm:flex-row sm:items-baseline sm:justify-between">
+              <div className="flex flex-row items-baseline gap-2 sm:gap-3 sm:justify-between">
+                <div className="font-medium text-3xl">Markets</div>
                 <div className="font-medium text-base text-[#6ddaba]">
                   {marketCount}
                 </div>
-                <div className="font-medium text-3xl">Markets</div>
               </div>
               {/* // market category list scroll swipe*/}
               <div className="w-full flex flex-row items-center gap-3 lg:w-[70%] overflow-hidden whitespace-nowrap">
@@ -135,12 +135,13 @@ export function EnhancedPredictionMarketDashboard() {
           >
             {isLoadingMarketCount ? (
               <div className="mt-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-4 flex-wrap">
                   {skeletonCards}
                 </div>
               </div>
             ) : (
               <>
+                {/* Active card section  */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-4 flex-wrap">
                   {Array.from({ length: Number(marketCount) }, (_, index) => (
                     <MarketCard
@@ -153,16 +154,14 @@ export function EnhancedPredictionMarketDashboard() {
                 </div>
                 <div
                   className="w-full text-base text-[#6ddaba] text-center my-10 cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#39997D] active:scale-95"
-                  onClick={() => {
-                    // Handle click event here
-                    console.log("Show More clicked");
-                  }}
+                  onClick={() => {}}
                 >
                   Show More...
                 </div>
+                {/* Pending and resolved market section */}
                 <div className="w-full flex flex-col lg:flex-row gap-2">
                   {" "}
-                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-1" className="border-none">
                         <AccordionTrigger
@@ -170,11 +169,13 @@ export function EnhancedPredictionMarketDashboard() {
                             <ChevronRight className="h-6 w-6 shrink-0 transition-transform duration-200 text-[#FDBE65]" />
                           }
                         >
-                          <div className="flex flex-row items-center justify-between gap-2 sm:gap-3">
+                          <div className="flex flex-row items-baseline justify-between gap-2 sm:gap-3">
+                            <div className="font-medium text-2xl sm:text-3xl">
+                              Pending
+                            </div>
                             <div className="font-medium text-base text-[#FDBE65]">
                               1
                             </div>
-                            <div className="font-medium text-3xl">Pending</div>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent>
@@ -197,7 +198,7 @@ export function EnhancedPredictionMarketDashboard() {
                       </AccordionItem>
                     </Accordion>
                   </div>
-                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-2" className="border-none">
                         <AccordionTrigger
@@ -205,11 +206,13 @@ export function EnhancedPredictionMarketDashboard() {
                             <ChevronRight className="h-6 w-6 shrink-0 transition-transform duration-200 text-[#FF8989]" />
                           }
                         >
-                          <div className="flex flex-row items-center justify-between gap-2 sm:gap-3">
+                          <div className="flex flex-row items-baseline justify-between gap-2 sm:gap-3">
+                            <div className="font-medium text-2xl sm:text-3xl">
+                              Resolved
+                            </div>
                             <div className="font-medium text-base text-[#FF8989]">
                               3
                             </div>
-                            <div className="font-medium text-3xl">Resolved</div>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent>

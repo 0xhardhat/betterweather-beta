@@ -76,9 +76,9 @@ export function Navbar() {
       <div className="flex flex-row items-center justify-between gap-10">
         {" "}
         <img
-          src="/BW-logo.svg"
+          src="/HNY-BW.svg"
           alt="logo in dark theme"
-          className="lg:w-[102px] lg:h-[36px] w-[142px] h-[48px] cursor-pointer"
+          className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer"
           onClick={() => {
             router.push("/");
           }}

@@ -41,8 +41,6 @@ export function MarketResolved({
 
   const isthereRewards = (outcome: number) => {
     if (sharesbalance) {
-      console.log("optionAShares---->", sharesbalance?.optionAShares);
-      console.log("optionBShares---->", sharesbalance?.optionBShares);
       if (outcome == 1) return sharesbalance?.optionAShares > 0;
       else if (outcome != 1) return sharesbalance?.optionBShares > 0;
     }
