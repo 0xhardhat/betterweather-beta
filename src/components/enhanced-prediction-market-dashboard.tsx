@@ -55,7 +55,7 @@ export function EnhancedPredictionMarketDashboard() {
 
   return (
     <div
-      className="w-full min-h-screen flex flex-col bg-background relative overflow-x-hidden"
+      className="w-full min-h-screen flex flex-col bg-background relative overflow-x-hidden overflow-y-hidden"
       style={{
         backgroundImage: `url('/background.svg')`,
         backgroundSize: `cover`,
@@ -63,6 +63,8 @@ export function EnhancedPredictionMarketDashboard() {
       }}
     >
       {/* hero section background images */}
+      <div className="w-[400px] h-[640px] origin-top-left rotate-90 opacity-25 absolute hidden sm:flex sm:right-[30%] sm:bottom-[-650px] bg-[#6ddaba] rounded-full blur-[150px] z-4"></div>
+      <div className="w-[290px] h-[640px] origin-top-left rotate-90 opacity-25 absolute right-[10%] bottom-[-330px] flex sm:hidden bg-[#6ddaba] rounded-full blur-[150px] z-4"></div>
       <div
         className="w-full flex flex-col bg-custom-size-mobile bg-top bg-no-repeat sm:bg-right-top sm:bg-custom-size"
         style={{
@@ -77,13 +79,13 @@ export function EnhancedPredictionMarketDashboard() {
         <Navbar />
         <div className="flex-grow container mx-auto p-4 items-center z-10">
           <Hero />
+          {/* market category list */}
           <div className="w-full flex flex-row mt-0 lg:mt-14 relative">
             <div className="z-2 w-[233px] h-[416px] origin-top-left rotate-90 opacity-20 bg-[#6ddaba] rounded-full blur-[250px] absolute left-[560px]"></div>
             <img
               src="/market/market-block.svg"
               className="w-[268.51px] h-[225.52px] absolute left-[-25px] top-[-35px] sm:top-[-70px] sm:left-[240px]"
             />
-            {/* market category list */}
             <div className="z-20 w-full flex flex-col gap-5 items-center lg:w-full lg:flex-row lg:gap-20 lg:justify-between lg:px-5 overflow-hidden">
               <div className="flex flex-row items-baseline gap-2 sm:gap-3 sm:justify-between">
                 <div className="font-medium text-3xl">Markets</div>
@@ -124,14 +126,10 @@ export function EnhancedPredictionMarketDashboard() {
               </div>
             </div>
           </div>
+          {/* market section  */}
           <div
-            className="mt-10"
-            // className="mt-10 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-bottom"
-            // style={{
-            //   backgroundImage: isMobile
-            //     ? "url('https://res.cloudinary.com/dq9alywlv/image/upload/v1734653508/resolve-section-background-mobile_k3roxx.png')"
-            //     : "url('https://res.cloudinary.com/dq9alywlv/image/upload/v1734653274/resolve-section-background_ubsaca.png')",
-            // }}
+            // className="mt-10"
+            className="mt-10 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top"
           >
             {isLoadingMarketCount ? (
               <div className="mt-6">
@@ -159,8 +157,15 @@ export function EnhancedPredictionMarketDashboard() {
                   Show More...
                 </div>
                 {/* Pending and resolved market section */}
-                <div className="w-full flex flex-col lg:flex-row gap-2">
-                  {" "}
+                <div className="w-full flex flex-col lg:flex-row gap-2 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top-[200px]">
+                  {/* <img
+                    src={
+                      isMobile
+                        ? "https://res.cloudinary.com/dq9alywlv/image/upload/v1734653508/resolve-section-background-mobile_k3roxx.png"
+                        : "https://res.cloudinary.com/dq9alywlv/image/upload/v1734653274/resolve-section-background_ubsaca.png"
+                    }
+                    className="absolute"
+                  />{" "} */}
                   <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-1" className="border-none">
