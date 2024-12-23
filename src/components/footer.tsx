@@ -9,21 +9,19 @@ import {
 import { useRouter } from "next/navigation";
 import { Instagram, X } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-
-// const socials = [
-//   { url: "/social/x-icon.svg", title: "twitter" },
-//   { url: "/social/instagram-icon.svg", title: "instagram" },
-//   { url: "/social/discord-icon.svg", title: "discord" },
-// ];
+import Image from "next/image";
 
 export function Footer() {
   const router = useRouter();
   return (
     <TooltipProvider>
       <footer className="flex-grow flex-col items-center container mx-auto mt-8 pb-4 bg-background dark:bg-transparent relative md:overflow-hidden">
-        <img
+        <Image
           src="/footer/footer-block.svg"
-          className="w-[330px] h-[270px] absolute right-[-160px] top-16 sm:bottom-[-30px] lg:bottom-[-50px] lg:left-40 md:left-[-10px] z-5"
+          alt="footer-block image"
+          width={330}
+          height={270}
+          className="absolute right-[-160px] top-16 sm:bottom-[-30px] lg:bottom-[-50px] lg:left-40 md:left-[-10px] z-5"
         />
         <div className="z-20 flex flex-col items-center justify-between gap-10 py-12 lg:flex-row md:gap-24 lg:gap-[320px] lg:justify-around md:justify-around md:flex-row md:items-start lg:items-start md:py-0">
           {/* <img
@@ -34,10 +32,12 @@ export function Footer() {
             router.push("/");
           }}
         /> */}
-          <img
+          <Image
             src="/BW-logo-footer.svg"
             alt="logo in dark theme"
-            className="hidden sm:flex sm:w-[150px] sm:h-auto  cursor-pointer"
+            width={150}
+            height={55}
+            className="hidden sm:flex cursor-pointer"
             onClick={() => {
               router.push("/");
             }}
@@ -50,9 +50,11 @@ export function Footer() {
             router.push("/");
           }}
         /> */}
-          <img
+          <Image
             src="/BW-logo-footer-mobile.svg"
-            alt="logo in dark theme"
+            alt="logo in dark theme-mobile"
+            width={94}
+            height={90}
             className="flex w-24 h-auto sm:hidden cursor-pointer"
             onClick={() => {
               router.push("/");
@@ -69,7 +71,7 @@ export function Footer() {
             </div>
             <div className="flex flex-row gap-4">
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                   <IconButton
                     sx={{
                       color: "#515670",
@@ -84,7 +86,7 @@ export function Footer() {
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                   <IconButton
                     sx={{
                       color: "#515670",
@@ -100,9 +102,12 @@ export function Footer() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
-                  <img
+                  <Image
                     src="/social/discord-icon.svg"
-                    className="w-6 h-auto cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:opacity-80 hover:text-[#6DDABA]"
+                    alt="discord image"
+                    width={24}
+                    height={18}
+                    className="cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:opacity-80 hover:text-[#6DDABA]"
                   />
                 </TooltipTrigger>
                 <TooltipContent>

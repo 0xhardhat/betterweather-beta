@@ -1,8 +1,10 @@
 "use client";
 
 import { useReadContract } from "thirdweb/react";
-import { contract } from "@/constants/contract";
 
+import Image from "next/image";
+
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
@@ -10,20 +12,20 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 import { MarketCard } from "./marketCard";
-import { Navbar } from "./navbar";
 import { MarketCardSkeleton } from "./market-card-skeleton";
-import { Footer } from "./footer";
-import { useState, useEffect } from "react";
+import { Footer } from "../footer";
+
 import { ChevronRight } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion";
-import Hero from "./hero";
+} from "../ui/accordion";
+import Hero from "../hero";
 
 import clsx from "clsx";
+import { contract } from "@/constants/contract";
 import categories from "@/constants/categories";
 
 export function EnhancedPredictionMarketDashboard() {
@@ -55,7 +57,7 @@ export function EnhancedPredictionMarketDashboard() {
 
   return (
     <div
-      className="w-full min-h-screen flex flex-col bg-background relative overflow-x-hidden overflow-y-hidden"
+      className="z-4 w-full min-h-screen flex flex-col bg-background relative overflow-x-hidden overflow-y-hidden"
       style={{
         backgroundImage: `url('/background.svg')`,
         backgroundSize: `cover`,
@@ -76,15 +78,18 @@ export function EnhancedPredictionMarketDashboard() {
         {/* left and right blur effect circle images         */}
         <div className="w-[233px] h-[313px] origin-center opacity-40 bg-[#6ddaba] rounded-full blur-[100px] z-5 absolute right-[-160px] top-0"></div>
         <div className="w-[233px] h-[225px] origin-center rotate-[5.59deg] opacity-40 bg-[#38a8f8] rounded-full blur-[70px] absolute left-[-150px] top-48 z-5"></div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="flex-grow container mx-auto p-4 items-center z-10">
           <Hero />
           {/* market category list */}
           <div className="w-full flex flex-row mt-0 lg:mt-14 relative">
             <div className="z-2 w-[233px] h-[416px] origin-top-left rotate-90 opacity-20 bg-[#6ddaba] rounded-full blur-[250px] absolute left-[560px]"></div>
-            <img
+            <Image
+              width={268}
+              height={225}
+              alt="market-block image"
               src="/market/market-block.svg"
-              className="w-[268.51px] h-[225.52px] absolute left-[-25px] top-[-35px] sm:top-[-70px] sm:left-[240px]"
+              className="absolute left-[-25px] top-[-35px] sm:top-[-70px] sm:left-[240px]"
             />
             <div className="z-20 w-full flex flex-col gap-5 items-center lg:w-full lg:flex-row lg:gap-20 lg:justify-between lg:px-5 overflow-hidden">
               <div className="flex flex-row items-baseline gap-2 sm:gap-3 sm:justify-between">
@@ -109,7 +114,7 @@ export function EnhancedPredictionMarketDashboard() {
                       key={index}
                       style={{
                         flex: "0 0 auto",
-                        margin: "0 52px",
+                        margin: "0 24px",
                         width: "auto",
                       }}
                     >
@@ -129,7 +134,7 @@ export function EnhancedPredictionMarketDashboard() {
           {/* market section  */}
           <div
             // className="mt-10"
-            className="mt-10 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top"
+            className="z-10 mt-10 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top"
           >
             {isLoadingMarketCount ? (
               <div className="mt-6">
@@ -157,7 +162,7 @@ export function EnhancedPredictionMarketDashboard() {
                   Show More...
                 </div>
                 {/* Pending and resolved market section */}
-                <div className="w-full flex flex-col lg:flex-row gap-2 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top-[200px]">
+                <div className="z-10 w-full flex flex-col lg:flex-row gap-2 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top-[200px]">
                   {/* <img
                     src={
                       isMobile
@@ -166,7 +171,7 @@ export function EnhancedPredictionMarketDashboard() {
                     }
                     className="absolute"
                   />{" "} */}
-                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-1" className="border-none">
                         <AccordionTrigger
@@ -203,7 +208,7 @@ export function EnhancedPredictionMarketDashboard() {
                       </AccordionItem>
                     </Accordion>
                   </div>
-                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="z-10 w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-2" className="border-none">
                         <AccordionTrigger
@@ -268,8 +273,10 @@ export const Categorylist = ({
     <ul className="list-none inline-block">
       <li
         className={clsx(
-          "hover:text-[#777da0] transition-all duration-200 ease-in-out cursor-pointer font-medium",
-          currentcategory === value ? "text-[#777da0]" : "text-[#51556f]"
+          "py-2 px-4 rounded-xl transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
+          currentcategory === value
+            ? "bg-[#212431] text-[#777da0]"
+            : "text-[#51556f]"
         )}
         onClick={() => {
           setCategory(value);

@@ -1,4 +1,4 @@
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
 import { toEther } from "thirdweb";
 import { useEffect, useState } from "react";
 import { toFixed } from "@/lib/utils";

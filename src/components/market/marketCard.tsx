@@ -4,7 +4,7 @@ import {
   // CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
 import { useActiveAccount, useReadContract } from "thirdweb/react";
 import { contract } from "@/constants/contract";
 import { MarketProgress } from "./market-progress";
@@ -19,7 +19,7 @@ import {
   // CustomCardContent,
   CustomCardHeader,
   CustomCardTitle,
-} from "./ui/customcard";
+} from "../ui/customcard";
 import { CustomMarketProgress } from "./market-progress-custom";
 
 // Props for the MarketCard component

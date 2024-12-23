@@ -12,6 +12,7 @@ import {
 } from "thirdweb/wallets";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { client } from "@/app/client";
 import {
@@ -82,7 +83,9 @@ export function Navbar() {
       </h1> */}
         <div className="flex flex-row items-center justify-between gap-10">
           {" "}
-          <img
+          <Image
+            width={142}
+            height={43}
             src="/HNY-BW.svg"
             alt="logo in dark theme"
             className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer"
@@ -123,42 +126,46 @@ export function Navbar() {
               )}
             </Button>
           )}
-          <div className="hidden sm:flex items-center gap-2 justify-between">
-            <SearchBar />
-            <ConnectButton
-              client={client}
-              theme={lightTheme()}
-              chain={base}
-              connectButton={{
-                style: {
-                  color: "39997D",
-                  width: "108px",
-                  fontSize: "0.5rem !important",
-                  // height: "2rem !important",
-                  height: "48px",
-                  // backgroundColor: "#39997D",
-                  backgroundColor: account ? "transparent" : "#39997D",
-                  borderRadius: "12px",
-                },
-                label: "Sign In",
-              }}
-              detailsButton={{
-                displayBalanceToken: {
-                  [base.id]: "0xB90C49cb2D16cDb11bD398d96Dec386e9b9D3D2D",
-                },
-              }}
-              // wallets={[
-              //     inAppWallet(),
-              // ]}
-              wallets={wallets}
-              accountAbstraction={{
-                chain: base,
-                sponsorGas: true,
-              }}
-            />
+          <div className="flex flex-row gap-2 items-center">
+            <div className="hidden sm:flex">
+              <SearchBar />
+            </div>
+            <div className="flex">
+              <ConnectButton
+                client={client}
+                theme={lightTheme()}
+                chain={base}
+                connectButton={{
+                  style: {
+                    color: "39997D",
+                    width: "108px",
+                    fontSize: "0.5rem !important",
+                    // height: "2rem !important",
+                    height: "48px",
+                    // backgroundColor: "#39997D",
+                    backgroundColor: account ? "transparent" : "#39997D",
+                    borderRadius: "12px",
+                  },
+                  label: "Sign In",
+                }}
+                detailsButton={{
+                  displayBalanceToken: {
+                    [base.id]: "0xB90C49cb2D16cDb11bD398d96Dec386e9b9D3D2D",
+                  },
+                }}
+                // wallets={[
+                //     inAppWallet(),
+                // ]}
+                wallets={wallets}
+                accountAbstraction={{
+                  chain: base,
+                  sponsorGas: true,
+                }}
+              />
+            </div>
           </div>
           <Button
-            className="hidden lg:flex lg:border-1 lg:border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
+            className="sm:flex md:hidden lg:flex border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
             onClick={() => {
               if (themecolor == "dark") {
                 setThemecolor("light");
@@ -178,7 +185,7 @@ export function Navbar() {
             )}
           </Button>
           <Button
-            className="flex lg:hidden border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
+            className="hidden md:flex lg:hidden border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
             size="icon"
             variant="outline"
           >

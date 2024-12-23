@@ -6,8 +6,8 @@ import { approve } from "thirdweb/extensions/erc20";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast";
-import { CustomInput } from "./ui/custominput";
-import { Button } from "./ui/button";
+import { CustomInput } from "../ui/custominput";
+import { Button } from "../ui/button";
 
 // Types for the component props
 interface MarketBuyInterfaceProps {

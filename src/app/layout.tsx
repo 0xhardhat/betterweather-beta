@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 // import { ThirdwebProvider } from "thirdweb/react";
 import Provider from "@/providers";
 import { Toaster } from "@/components/ui/toaster";
+import { Navbar } from "@/components/navbar";
+import Footerpad from "@/components/footerpad";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,16 +34,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        {/* <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -53,12 +45,12 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-poppins`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-poppins flex justify-center`}
       >
         <Provider>
-          {/* <ThirdwebProvider> */}
+          <Navbar />
           {children}
-          {/* </ThirdwebProvider> */}
+          <Footerpad />
         </Provider>
         <Toaster />
       </body>

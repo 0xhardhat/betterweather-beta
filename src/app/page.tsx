@@ -1,7 +1,5 @@
-import { EnhancedPredictionMarketDashboard } from "@/components/enhanced-prediction-market-dashboard";
+import { EnhancedPredictionMarketDashboard } from "@/components/market/enhanced-prediction-market-dashboard";
 
 export default function Home() {
-  return (
-    <EnhancedPredictionMarketDashboard />
-  );
+  return <EnhancedPredictionMarketDashboard />;
 }

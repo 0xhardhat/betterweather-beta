@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { prepareContractCall } from "thirdweb";
 import { useSendAndConfirmTransaction } from "thirdweb/react";
 import { contract } from "@/constants/contract";
