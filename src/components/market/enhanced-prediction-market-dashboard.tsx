@@ -273,7 +273,7 @@ export const Categorylist = ({
     <ul className="list-none inline-block">
       <li
         className={clsx(
-          "py-2 px-4 rounded-xl transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
+          "flex flex-row items-center h-10 px-4 rounded-xl transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
           currentcategory === value
             ? "bg-[#212431] text-[#777da0]"
             : "text-[#51556f]"
