@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 // import PrecipitationIcon from "./assets/icons/precipitation";
 
 interface MarketTimeProps {
@@ -32,12 +33,14 @@ export function MarketTime({
     <div className="flex flex-row justify-between gap-2 items-center">
       <div className="flex flex-row gap-2 items-center">
         {filter == "active" && (
-          <img src="/market/clock.svg" alt="clock" className="h-5 w-5" />
+          <Image src="/market/clock.svg" alt="clock" width={20} height={20} />
         )}
         {(filter == "resolved" || filter == "pending") && (
-          <img
+          <Image
             src={`/market/clock-${filter}.svg`}
             alt="clock"
+            width={20}
+            height={20}
             className="h-5 w-5"
           />
         )}

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -42,9 +43,11 @@ const CardTitle = React.forwardRef<
       )}
       {...props}
     />
-    <img
+    <Image
       src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
       alt="placeholder"
+      width={48}
+      height={48}
       className="h-12 w-12 rounded-2xl"
     />
   </div>

@@ -1,4 +1,4 @@
-import { Badge } from "../ui/badge";
+// import { Badge } from "../ui/badge";
 import { toEther } from "thirdweb";
 import { useEffect, useState } from "react";
 import { toFixed } from "@/lib/utils";
@@ -41,7 +41,7 @@ export function MarketSharesDisplay({
 
     // Calculate user's proportion of the winning side
     const userProportion =
-      (userShares * BigInt(1000000)) / totalSharesForOption; // Multiply by 1M for precision            
+      (userShares * BigInt(1000000)) / totalSharesForOption; // Multiply by 1M for precision
     // Calculate their share of the losing side's shares
     const winningsFromLosingShares =
       (totalLosingShares * userProportion) / BigInt(1000000);
@@ -64,19 +64,22 @@ export function MarketSharesDisplay({
     }
   }, [sharesBalance, market.totalOptionAShares, market.totalOptionBShares]);
 
-  const displayWinningsA = toFixed(Number(toEther(winnings.A)), 2);
-  const displayWinningsB = toFixed(Number(toEther(winnings.B)), 2);
+  // const displayWinningsA = toFixed(Number(toEther(winnings.A)), 2);
+  // const displayWinningsB = toFixed(Number(toEther(winnings.B)), 2);
 
   return (
     <div className="flex flex-col gap-2">
       <div className="w-full text-sm text-muted-foreground">
-        Your shares: {market.optionA} -{" "}
-        {Math.floor(parseInt(toEther(sharesBalance?.optionAShares)))},{" "}
-        {market.optionB} -{" "}
-        {Math.floor(parseInt(toEther(sharesBalance?.optionBShares)))}
+        Your shares:&nbsp;
+        <span className="text-[#F9FCFF]">
+          {market.optionA} -{" "}
+          {Math.floor(parseInt(toEther(sharesBalance?.optionAShares)))},{" "}
+          {market.optionB} -{" "}
+          {Math.floor(parseInt(toEther(sharesBalance?.optionBShares)))}
+        </span>
       </div>
-      {(winnings.A > 0 || winnings.B > 0) && (
-        <div className="flex flex-col gap-1">
+      {/* {(winnings.A > 0 || winnings.B > 0) && (
+        <div className="flex flex-row items-center gap-1">
           <div className="text-xs text-muted-foreground">Winnings:</div>
           <div className="flex gap-2">
             <Badge variant="secondary">
@@ -87,7 +90,7 @@ export function MarketSharesDisplay({
             </Badge>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

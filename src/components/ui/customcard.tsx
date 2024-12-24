@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const CustomCard = React.forwardRef<
   HTMLDivElement,
@@ -34,9 +35,11 @@ const CustomCardTitle = React.forwardRef<
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <div className="flex flex-row items-center gap-5">
-    <img
+    <Image
       src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
       alt="placeholder"
+      width={48}
+      height={48}
       className="h-12 w-12 rounded-2xl"
     />
     <h3

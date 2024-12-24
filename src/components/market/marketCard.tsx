@@ -11,9 +11,9 @@ import { MarketProgress } from "./market-progress";
 import { MarketTime } from "./market-time";
 import { MarketCardSkeleton } from "./market-card-skeleton";
 import { MarketResolved } from "./market-resolved";
-import { MarketPending } from "./market-pending";
+// import { MarketPending } from "./market-pending";
 import { MarketBuyInterface } from "./market-buy-interface";
-// import { MarketSharesDisplay } from "./market-shares-display";
+import { MarketSharesDisplay } from "./market-shares-display";
 import {
   CustomCard,
   // CustomCardContent,
@@ -32,7 +32,7 @@ interface MarketCardProps {
 }
 
 // Interface for the market data
-interface Market {
+export interface Market {
   question: string;
   category: string;
   optionA: string;
@@ -158,17 +158,7 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
                   />
                 )}
                 {new Date(Number(market?.endTime) * 1000) < new Date() ? (
-                  market?.resolved ? (
-                    <MarketResolved
-                      marketId={index}
-                      outcome={market.outcome}
-                      optionA={market.optionA}
-                      optionB={market.optionB}
-                      sharesbalance={sharesBalance}
-                    />
-                  ) : (
-                    <MarketPending />
-                  )
+                  <></>
                 ) : (
                   <MarketBuyInterface marketId={index} market={market!} />
                 )}
@@ -185,7 +175,45 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
           )}
         </Card>
       )}
-      {(filter == "pending" || filter == "resolved") && (
+      {filter == "pending" && (
+        <CustomCard key={index} className="flex flex-col w-full">
+          {isLoadingMarketData ? (
+            <MarketCardSkeleton />
+          ) : (
+            <>
+              <CustomCardHeader>
+                {market && (
+                  <MarketTime
+                    filter={filter}
+                    endTime={market.endTime}
+                    category={market?.category}
+                  />
+                )}
+                <div className="w-full flex flex-col items-start">
+                  <div className="w-full flex flex-col gap-4 md:gap-1 md:flex-row justify-between">
+                    <CustomCardTitle>{market?.question}</CustomCardTitle>
+                    {market && (
+                      <CustomMarketProgress
+                        optionA={market.optionA}
+                        optionB={market.optionB}
+                        totalOptionAShares={market.totalOptionAShares}
+                        totalOptionBShares={market.totalOptionBShares}
+                      />
+                    )}
+                  </div>
+                  {market && sharesBalance && (
+                    <MarketSharesDisplay
+                      market={market}
+                      sharesBalance={sharesBalance}
+                    />
+                  )}
+                </div>
+              </CustomCardHeader>
+            </>
+          )}
+        </CustomCard>
+      )}
+      {filter == "resolved" && (
         <CustomCard key={index} className="flex flex-col w-full">
           {isLoadingMarketData ? (
             <MarketCardSkeleton />
@@ -211,15 +239,34 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
                   )}
                 </div>
               </CustomCardHeader>
-              {/* <CustomCardContent></CustomCardContent> */}
+              <CardContent>
+                {new Date(Number(market?.endTime) * 1000) < new Date() ? (
+                  market?.resolved && sharesBalance ? (
+                    // <div className="flex flex-row items-center justify-between"></div>
+                    <MarketResolved
+                      marketId={index}
+                      outcome={market.outcome}
+                      optionA={market.optionA}
+                      optionB={market.optionB}
+                      sharesbalance={sharesBalance}
+                      market={market}
+                    />
+                  ) : (
+                    <></>
+                    // <MarketPending />
+                  )
+                ) : (
+                  <></>
+                )}
+              </CardContent>
               {/* <CardFooter>
-            {market && sharesBalance && (
-              <MarketSharesDisplay
-                market={market}
-                sharesBalance={sharesBalance}
-              />
-            )}
-          </CardFooter> */}
+                {market && sharesBalance && (
+                  <MarketSharesDisplay
+                    market={market}
+                    sharesBalance={sharesBalance}
+                  />
+                )}
+              </CardFooter> */}
             </>
           )}
         </CustomCard>
