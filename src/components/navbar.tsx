@@ -166,6 +166,7 @@ export function Navbar() {
           </div>
           <Button
             className="sm:flex md:hidden lg:flex border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
+            disabled
             onClick={() => {
               if (themecolor == "dark") {
                 setThemecolor("light");
