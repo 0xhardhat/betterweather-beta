@@ -171,7 +171,7 @@ export function EnhancedPredictionMarketDashboard() {
                     }
                     className="absolute"
                   />{" "} */}
-                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-lg border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-1" className="border-none">
                         <AccordionTrigger
@@ -208,7 +208,7 @@ export function EnhancedPredictionMarketDashboard() {
                       </AccordionItem>
                     </Accordion>
                   </div>
-                  <div className="z-10 w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="z-10 w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-lg border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-2" className="border-none">
                         <AccordionTrigger
@@ -273,7 +273,7 @@ export const Categorylist = ({
     <ul className="list-none inline-block">
       <li
         className={clsx(
-          "flex flex-row items-center h-10 px-4 rounded-xl transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
+          "flex flex-row items-center h-10 px-4 rounded-lg transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
           currentcategory === value
             ? "bg-[#212431] text-[#777da0]"
             : "text-[#51556f]"

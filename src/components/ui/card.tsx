@@ -10,7 +10,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "z-10 flex flex-col justify-between rounded-3xl border-none bg-card text-card-foreground shadow-sm hover:bg-gray-200 cursor-pointer dark:bg-[#191B26] dark:hover:bg-[#212431] overflow-hidden transition-transform duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg ",
+      "z-10 flex flex-col justify-between rounded-lg border-none bg-card text-card-foreground shadow-sm hover:bg-gray-200 cursor-pointer dark:bg-[#191B26] dark:hover:bg-[#212431] overflow-hidden transition-transform duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg ",
       className
     )}
     {...props}
@@ -48,7 +48,7 @@ const CardTitle = React.forwardRef<
       alt="placeholder"
       width={48}
       height={48}
-      className="h-12 w-12 rounded-2xl"
+      className="h-12 w-12 rounded-lg"
     />
   </div>
 ));

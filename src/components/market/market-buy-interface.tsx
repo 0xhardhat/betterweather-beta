@@ -332,14 +332,14 @@ export function MarketBuyInterface({
                 <div className="flex justify-between gap-[2px] items-center">
                   <Button
                     onClick={checkApproval}
-                    className="flex-1 h-14 rounded-none rounded-bl-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+                    className="flex-1 h-14 rounded-none rounded-bl-lg dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
                   >
                     Confirm
                   </Button>
                   <div className="bg-[#262937] h-10 w-[2px] rounded-full" />
                   <Button
                     onClick={handleCancel}
-                    className="flex-1 h-14 rounded-none rounded-br-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+                    className="flex-1 h-14 rounded-none rounded-br-lg dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
                   >
                     Cancel
                   </Button>

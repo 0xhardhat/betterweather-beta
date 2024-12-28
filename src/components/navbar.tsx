@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Sun, Moon, List } from "lucide-react";
-import { ConnectButton, lightTheme, useActiveAccount } from "thirdweb/react";
+import {
+  ConnectButton,
+  darkTheme,
+  lightTheme,
+  useActiveAccount,
+} from "thirdweb/react";
 import { base } from "thirdweb/chains";
 import {
   // inAppWallet,
@@ -133,16 +138,17 @@ export function Navbar() {
             <div className="flex">
               <ConnectButton
                 client={client}
-                theme={lightTheme()}
+                theme={darkTheme()}
                 chain={base}
                 connectButton={{
                   style: {
-                    color: "39997D",
+                    color: "#F9FCFF",
                     width: "108px",
                     fontSize: "0.5rem !important",
                     // height: "2rem !important",
                     height: "48px",
                     // backgroundColor: "#39997D",
+                    // radial-gradient(43.46% 30.28% at 32.58% 18.17%, #6DDABA 0%, #39997D 100%)
                     backgroundColor: account ? "transparent" : "#39997D",
                     borderRadius: "12px",
                   },
@@ -165,8 +171,8 @@ export function Navbar() {
             </div>
           </div>
           <Button
-            className="sm:flex md:hidden lg:flex border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
-            disabled
+            className="sm:flex md:hidden lg:flex border-[1px] border-[#6DDABA] rounded-lg w-12 h-12 dark:bg-transparent"
+            // disabled
             onClick={() => {
               if (themecolor == "dark") {
                 setThemecolor("light");
