@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 
 import { MarketCard } from "./marketCard";
 import { MarketCardSkeleton } from "./market-card-skeleton";
-import { Footer } from "../footer";
+// import { Footer } from "../footer";
 
 import { ChevronRight } from "lucide-react";
 import {
@@ -56,14 +56,15 @@ export function EnhancedPredictionMarketDashboard() {
   }, []);
 
   return (
-    <div
-      className="z-4 w-full min-h-screen flex flex-col bg-background relative overflow-x-hidden overflow-y-hidden"
-      style={{
-        backgroundImage: `url('/background.svg')`,
-        backgroundSize: `cover`,
-        backgroundPosition: `center`,
-      }}
-    >
+    // <div
+    //   className="z-4 w-full min-h-screen flex flex-col bg-background relative overflow-x-hidden overflow-y-hidden"
+    //   style={{
+    //     backgroundImage: `url('/background.svg')`,
+    //     backgroundSize: `cover`,
+    //     backgroundPosition: `center`,
+    //   }}
+    // >
+    <div>
       {/* hero section background images */}
       <div className="w-[400px] h-[640px] origin-top-left rotate-90 opacity-25 absolute hidden sm:flex sm:right-[30%] sm:bottom-[-650px] bg-[#6ddaba] rounded-full blur-[150px] z-4"></div>
       <div className="w-[290px] h-[640px] origin-top-left rotate-90 opacity-25 absolute right-[10%] bottom-[-330px] flex sm:hidden bg-[#6ddaba] rounded-full blur-[150px] z-4"></div>
@@ -94,7 +95,7 @@ export function EnhancedPredictionMarketDashboard() {
             <div className="z-20 w-full flex flex-col gap-5 items-center lg:w-full lg:flex-row lg:gap-20 lg:justify-between lg:px-5 overflow-hidden">
               <div className="flex flex-row items-baseline gap-2 sm:gap-3 sm:justify-between">
                 <div className="font-medium text-3xl">Markets</div>
-                <div className="font-medium text-base text-[#6ddaba]">
+                <div className="font-medium text-base text-[#239c79] dark:text-[#6ddaba]">
                   {marketCount}
                 </div>
               </div>
@@ -109,7 +110,7 @@ export function EnhancedPredictionMarketDashboard() {
                   modules={[FreeMode]}
                   style={{ display: "flex" }} // Make Swiper a flex container
                 >
-                  {categories.map(({ title, value, url }, index) => (
+                  {categories.map(({ title, value, url, lighturl }, index) => (
                     <SwiperSlide
                       key={index}
                       style={{
@@ -120,6 +121,7 @@ export function EnhancedPredictionMarketDashboard() {
                     >
                       <Categorylist
                         url={url}
+                        lighturl={lighturl}
                         title={title}
                         value={value}
                         currentcategory={category}
@@ -156,7 +158,7 @@ export function EnhancedPredictionMarketDashboard() {
                   ))}
                 </div>
                 <div
-                  className="w-full text-base text-[#6ddaba] text-center my-10 cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#39997D] active:scale-95"
+                  className="w-full text-base text-[#239c79] dark:text-[#6ddaba] text-center my-10 cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#39997D] active:scale-95"
                   onClick={() => {}}
                 >
                   Show More...
@@ -171,7 +173,7 @@ export function EnhancedPredictionMarketDashboard() {
                     }
                     className="absolute"
                   />{" "} */}
-                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-lg border-2 p-6 py-3 sm:p-8 border-[#e6e8f8] dark:border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-1" className="border-none">
                         <AccordionTrigger
@@ -208,7 +210,7 @@ export function EnhancedPredictionMarketDashboard() {
                       </AccordionItem>
                     </Accordion>
                   </div>
-                  <div className="z-10 w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-3xl border-2 p-6 py-3 sm:p-8 border-[#24293a] backdrop-blur-[128px]">
+                  <div className="z-10 w-full lg:w-1/2 bg-[#d9d9d9]/0 rounded-lg border-2 p-6 py-3 sm:p-8 border-[#e6e8f8] dark:border-[#24293a] backdrop-blur-[128px]">
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-2" className="border-none">
                         <AccordionTrigger
@@ -250,7 +252,7 @@ export function EnhancedPredictionMarketDashboard() {
             )}
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
@@ -260,12 +262,14 @@ export const Categorylist = ({
   title,
   value,
   url,
+  lighturl,
   currentcategory,
   setCategory,
 }: {
   title: string;
   value: string;
   url: string;
+  lighturl: string;
   currentcategory: string;
   setCategory: (category: string) => void;
 }) => {
@@ -273,18 +277,34 @@ export const Categorylist = ({
     <ul className="list-none inline-block">
       <li
         className={clsx(
-          "flex flex-row items-center h-10 px-4 rounded-xl transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
+          "flex flex-row items-center h-10 px-4 rounded-lg transition-all duration-200 ease-in-out cursor-pointer font-medium dark:hover:text-[#777da0]  dark:active:bg-[#212431]",
           currentcategory === value
-            ? "bg-[#212431] text-[#777da0]"
-            : "text-[#51556f]"
+            ? "bg-[#dadcef] dark:bg-[#212431] text-[#1b1f24] dark:text-[#777da0]"
+            : "text-[#777da0]"
         )}
         onClick={() => {
           setCategory(value);
         }}
       >
         <div className="flex flex-row items-center gap-2">
-          {value !== "all markets" && (
-            <img src={url} alt={value} className="h-7 w-auto" />
+          {value !== "all markets" && currentcategory !== value && (
+            <>
+              <img src={url} alt={value} className="h-7 w-auto" />
+            </>
+          )}
+          {value !== "all markets" && currentcategory === value && (
+            <>
+              <img
+                src={url}
+                alt={value}
+                className="h-7 w-auto hidden dark:flex"
+              />
+              <img
+                src={lighturl}
+                alt={value}
+                className="h-7 w-auto flex dark:hidden"
+              />
+            </>
           )}
           {title}
         </div>

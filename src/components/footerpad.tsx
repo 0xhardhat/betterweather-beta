@@ -39,13 +39,15 @@ const Footerpad = () => {
   const route = useRouter();
   const pathname = usePathname();
   const firstSegment = pathname.split("/")[1];
+
   useEffect(() => {
     setPage(firstSegment);
     // console.log("pathname--->", pathname);
   }, [firstSegment]);
+
   return (
     <>
-      <div className="z-50 w-full h-24 fixed bottom-0 bg-[#191B26] flex flex-row sm:hidden justify-around items-center rounded-t-2xl backdrop-blur-[30px]">
+      <div className="z-50 w-full h-24 fixed bottom-0 bg-[#DADCEF] dark:bg-[#191B26] flex flex-row sm:hidden justify-around items-center rounded-t-2xl backdrop-blur-[30px]">
         {Paddata.map((paditem, index) => (
           <div
             className="flex flex-col items-center justify-between h-14 cursor-pointer"
@@ -65,7 +67,9 @@ const Footerpad = () => {
             />
             <div
               className={`text-sm ${
-                page == paditem.value ? "text-[#6DDABA]" : "text-[#F9FCFF] "
+                page == paditem.value
+                  ? "text-[#239C79] dark:text-[#6DDABA]"
+                  : "text-[#1B1F24] dark:text-[#F9FCFF] "
               }`}
             >
               {paditem.title}

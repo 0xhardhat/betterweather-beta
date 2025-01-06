@@ -8,6 +8,9 @@ const ThemeProvider = dynamic(() => import("@/providers/themeProvider"), {
 });
 // const ToastProvider = dynamic(() => import("@/providers/toastProvider"), { ssr: false });
 // const JotaiProvider = dynamic(() => import("@/providers/jotaiProvider"), { ssr: false });
+const JotaiProvider = dynamic(() => import("@/providers/jotaiProvider"), {
+  ssr: false,
+});
 // const NotificationProvider = dynamic(() => import("@/providers/notificationProvider"), { ssr: false });
 // const WalletsProvider = dynamic(() => import("@/providers/walletsProvider"), { ssr: false });
 // import { NextUIProvider } from "@nextui-org/react";
@@ -15,7 +18,9 @@ const ThemeProvider = dynamic(() => import("@/providers/themeProvider"), {
 const ThemeClient = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <ThemeProvider>
-      <ThirdwebProvider>{children}</ThirdwebProvider>
+      <JotaiProvider>
+        <ThirdwebProvider>{children}</ThirdwebProvider>
+      </JotaiProvider>
     </ThemeProvider>
   );
 };

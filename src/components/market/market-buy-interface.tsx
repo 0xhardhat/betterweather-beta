@@ -188,7 +188,7 @@ export function MarketBuyInterface({
           // Initial option selection buttons
           <div className="flex justify-between gap-[2px] items-center">
             <Button
-              className="flex-1 h-14 rounded-none rounded-bl-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+              className="flex-1 h-14 rounded-none rounded-bl-lg bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
               onClick={() => handleBuy("A")}
               aria-label={`Vote ${market.optionA} for "${market.question}"`}
               disabled={!account}
@@ -197,7 +197,7 @@ export function MarketBuyInterface({
             </Button>
             <div className="bg-[#262937] h-10 w-[2px] rounded-full" />
             <Button
-              className="flex-1 h-14 rounded-none rounded-br-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+              className="flex-1 h-14 rounded-none rounded-br-lg bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
               onClick={() => handleBuy("B")}
               aria-label={`Vote ${market.optionB} for "${market.question}"`}
               disabled={!account}
@@ -218,7 +218,7 @@ export function MarketBuyInterface({
                 <div className="flex justify-end">
                   <Button
                     onClick={handleSetApproval}
-                    className="mb-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
+                    className="mb-2 bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     disabled={isApproving}
                   >
                     {isApproving ? (
@@ -232,7 +232,7 @@ export function MarketBuyInterface({
                   </Button>
                   <Button
                     onClick={handleCancel}
-                    className="ml-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
+                    className="ml-2 bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     disabled={isApproving}
                   >
                     Cancel
@@ -254,7 +254,7 @@ export function MarketBuyInterface({
                 <div className="flex justify-end">
                   <Button
                     onClick={handleConfirm}
-                    className="mb-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
+                    className="mb-2 bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     disabled={isConfirming}
                   >
                     {isConfirming ? (
@@ -268,7 +268,7 @@ export function MarketBuyInterface({
                   </Button>
                   <Button
                     onClick={handleCancel}
-                    className="ml-2 dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
+                    className="ml-2 bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:text-[#F9FCFF] dark:border-[1px] dark:border-[#6DDABA]"
                     variant="outline"
                     disabled={isConfirming}
                   >
@@ -281,7 +281,7 @@ export function MarketBuyInterface({
               <div className="flex flex-col justify-between">
                 <div className="flex flex-col gap-1 mb-4 mx-6">
                   <div className="flex items-center gap-7 overflow-visible">
-                    <div className="flex-grow relative">
+                    <div className="mt-1 flex-grow relative">
                       <CustomInput
                         type="number"
                         min="1"
@@ -311,8 +311,8 @@ export function MarketBuyInterface({
                     <span
                       className={`font-bold whitespace-nowrap ${
                         selectedOption === "A"
-                          ? "text-[#6DDABA]"
-                          : "text-[#FF8989]"
+                          ? "dark:text-[#6DDABA] text-[#239c79]"
+                          : "dark:text-[#FF8989] text-[#D65959]"
                       }`}
                     >
                       {selectedOption === "A" ? market.optionA : market.optionB}
@@ -332,14 +332,14 @@ export function MarketBuyInterface({
                 <div className="flex justify-between gap-[2px] items-center">
                   <Button
                     onClick={checkApproval}
-                    className="flex-1 h-14 rounded-none rounded-bl-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+                    className="flex-1 h-14 rounded-none rounded-bl-lg bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
                   >
                     Confirm
                   </Button>
                   <div className="bg-[#262937] h-10 w-[2px] rounded-full" />
                   <Button
                     onClick={handleCancel}
-                    className="flex-1 h-14 rounded-none rounded-br-2xl dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
+                    className="flex-1 h-14 rounded-none rounded-br-lg bg-transparent hover:bg-[rgba(24,27,37,0.08)] text-[#1b1f24] hover:text-[#239c79] dark:bg-transparent dark:hover:bg-[#1B1E2B] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA]"
                   >
                     Cancel
                   </Button>

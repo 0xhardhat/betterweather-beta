@@ -4,23 +4,22 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Sun, Moon, List } from "lucide-react";
-import { ConnectButton, lightTheme, useActiveAccount } from "thirdweb/react";
-import { base } from "thirdweb/chains";
 import {
-  // inAppWallet,
-  createWallet,
-} from "thirdweb/wallets";
+  ConnectButton,
+  darkTheme,
+  lightTheme,
+  useActiveAccount,
+} from "thirdweb/react";
+import { base } from "thirdweb/chains";
+import { createWallet } from "thirdweb/wallets";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useAtom } from "jotai";
+import { themeAtom } from "@/store";
 
 import { client } from "@/app/client";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
@@ -33,7 +32,9 @@ export function Navbar() {
   const { toast } = useToast();
   const { setTheme } = useTheme();
   const router = useRouter();
-  const [themecolor, setThemecolor] = useState<string>("dark");
+  // const [themecolor, setThemecolor] = useState<string>("dark");
+  const [themecolor, setThemecolor] = useAtom(themeAtom);
+  const [scrolling, setScrolling] = useState(false);
 
   const wallets = [
     createWallet("io.metamask"),
@@ -70,14 +71,47 @@ export function Navbar() {
       setIsClaimLoading(false);
     }
   };
+  const handleThemeChange = (newTheme: string) => {
+    setThemecolor(newTheme);
+    setTheme(newTheme);
+    // Save the selected theme to localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", newTheme);
+    }
+  };
 
   useEffect(() => {
-    setTheme("dark");
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setThemecolor(storedTheme);
+      setTheme(storedTheme);
+    }
+  }, []);
+
+  // Scroll event handler
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <TooltipProvider>
-      <div className="flex flex-row justify-between items-center px-5 mb-6 gap-4 md:gap-0 lg:px-10 lg:gap-0 fixed mt-0 h-20 w-full max-w-[1600px] top-0 self-center bg-transparent z-20 backdrop-blur-sm backdrop-filter">
+      {/* <div className="flex flex-row justify-between items-center px-5 mb-6 gap-4 md:gap-0 lg:px-10 lg:gap-0 fixed mt-0 h-20 w-full max-w-[1600px] top-0 self-center bg-transparent z-20 backdrop-blur-sm backdrop-filter"> */}
+      <div
+        className={`z-50 flex flex-row justify-between items-center px-5 mb-6 gap-4 md:gap-0 lg:px-10 lg:gap-0 fixed mt-0 h-20 w-full max-w-[1600px] top-0 self-center transition-all duration-300 ${
+          scrolling ? "backdrop-blur-sm backdrop-filter" : "bg-transparent"
+        } z-20`}
+      >
         {/* <h1 className="text-2xl font-bold">
         <span className="text-[#4ad4ab]">Better</span> Weather
       </h1> */}
@@ -88,22 +122,24 @@ export function Navbar() {
             height={43}
             src="/HNY-BW.svg"
             alt="logo in dark theme"
-            className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer"
+            className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer hidden dark:flex"
+            onClick={() => {
+              router.push("/");
+            }}
+          />
+          <Image
+            width={142}
+            height={43}
+            src="/BW-logo-light.svg"
+            alt="logo in dark theme"
+            className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer flex dark:hidden"
             onClick={() => {
               router.push("/");
             }}
           />
           <div className="hidden lg:flex lg:flex-row lg:gap-x-10 lg:gap-y-1 lg:flex-wrap">
             {routes.map(({ title, href }, index) => (
-              <Tooltip key={index}>
-                <TooltipTrigger>
-                  <NavBtn title={title} href={href} />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Coming soon</p>
-                </TooltipContent>
-              </Tooltip>
-              // <NavBtn title={title} href={href} key={index} />
+              <NavBtn title={title} href={href} key={index} />
             ))}
           </div>
         </div>
@@ -133,16 +169,17 @@ export function Navbar() {
             <div className="flex">
               <ConnectButton
                 client={client}
-                theme={lightTheme()}
+                theme={themecolor === "dark" ? darkTheme() : lightTheme()}
                 chain={base}
                 connectButton={{
                   style: {
-                    color: "39997D",
+                    color: "#F9FCFF",
                     width: "108px",
                     fontSize: "0.5rem !important",
                     // height: "2rem !important",
                     height: "48px",
                     // backgroundColor: "#39997D",
+                    // radial-gradient(43.46% 30.28% at 32.58% 18.17%, #6DDABA 0%, #39997D 100%)
                     backgroundColor: account ? "transparent" : "#39997D",
                     borderRadius: "12px",
                   },
@@ -165,16 +202,10 @@ export function Navbar() {
             </div>
           </div>
           <Button
-            className="sm:flex md:hidden lg:flex border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
-            disabled
+            className="sm:flex md:hidden lg:flex border-[1px] border-[#239c79] dark:border-[#6DDABA] rounded-lg w-12 h-12 bg-transparent hover:bg-transparent"
             onClick={() => {
-              if (themecolor == "dark") {
-                setThemecolor("light");
-                setTheme("light");
-              } else {
-                setThemecolor("dark");
-                setTheme("dark");
-              }
+              const newTheme = themecolor === "dark" ? "light" : "dark";
+              handleThemeChange(newTheme);
             }}
             size="icon"
             variant="outline"
@@ -186,7 +217,7 @@ export function Navbar() {
             )}
           </Button>
           <Button
-            className="hidden md:flex lg:hidden border-[1px] border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
+            className="hidden md:flex lg:hidden border-[1px] border-[#239c79] dark:border-[#6DDABA] rounded-xl w-12 h-12 dark:bg-transparent"
             size="icon"
             variant="outline"
           >
@@ -204,14 +235,13 @@ export const NavBtn = ({ title, href }: { title: string; href: string }) => {
     <ul className="list-none lg:flex">
       <li
         className={clsx(
-          "hover:text-[#6DDABA] transition-all duration-200 ease-in-out cursor-pointer font-medium",
-          pathname === href ? "text-[#6DDABA]" : "text-[#F9FCFF]"
+          "hover:text-[#239c79] dark:hover:text-[#6DDABA] transition-all duration-200 ease-in-out cursor-pointer font-medium",
+          pathname === href
+            ? "text-[#239c79] dark:text-[#6DDABA]"
+            : "text-[#1b1f24] dark:text-[#F9FCFF]"
         )}
       >
-        <a
-          // href={href}
-          className="flex gap-1 items-center justify-start"
-        >
+        <a href={href} className="flex gap-1 items-center justify-start">
           {title}
         </a>
       </li>

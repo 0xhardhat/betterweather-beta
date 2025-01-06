@@ -9,13 +9,16 @@ import {
 import { useRouter } from "next/navigation";
 import { Instagram, X } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 
 export function Footer() {
   const router = useRouter();
+  const { theme } = useTheme();
+
   return (
     <TooltipProvider>
-      <footer className="flex-grow flex-col items-center container mx-auto mt-8 pb-4 bg-background dark:bg-transparent relative md:overflow-hidden">
+      <footer className="w-full flex-grow flex-col items-center container mx-auto mt-8 pb-4 bg-transparent relative md:overflow-hidden">
         <Image
           src="/footer/footer-block.svg"
           alt="footer-block image"
@@ -32,12 +35,24 @@ export function Footer() {
             router.push("/");
           }}
         /> */}
+          {theme == "dark" && (
+            <Image
+              src="/BW-logo-footer.svg"
+              alt="logo in dark theme"
+              width={150}
+              height={55}
+              className="hidden sm:flex cursor-pointer"
+              onClick={() => {
+                router.push("/");
+              }}
+            />
+          )}
           <Image
-            src="/BW-logo-footer.svg"
-            alt="logo in dark theme"
+            src="/BW-logo-footer-light.svg"
+            alt="logo in light theme"
             width={150}
             height={55}
-            className="hidden sm:flex cursor-pointer"
+            className="hidden sm:flex cursor-pointer dark:hidden"
             onClick={() => {
               router.push("/");
             }}
@@ -50,19 +65,31 @@ export function Footer() {
             router.push("/");
           }}
         /> */}
+          {theme == "dark" && (
+            <Image
+              src="/BW-logo-footer-mobile.svg"
+              alt="logo in dark theme-mobile"
+              width={94}
+              height={90}
+              className="flex w-24 h-auto sm:hidden cursor-pointer"
+              onClick={() => {
+                router.push("/");
+              }}
+            />
+          )}
           <Image
-            src="/BW-logo-footer-mobile.svg"
+            src="/BW-logo-footer-mobile-light.svg"
             alt="logo in dark theme-mobile"
             width={94}
             height={90}
-            className="flex w-24 h-auto sm:hidden cursor-pointer"
+            className="flex w-24 h-auto sm:hidden cursor-pointer dark:hidden"
             onClick={() => {
               router.push("/");
             }}
           />
 
           <div className="flex flex-col items-center gap-4 px-8 md:items-start md:gap-2 md:px-0">
-            <div className="text-center text-base leading-loose md:text-left text-[#f8fbff]">
+            <div className="text-center text-base leading-loose md:text-left text-[1B1F24] dark:text-[#f8fbff]">
               is dedicated to creating markets specifically for naturally
               occuring earth science data. We offer a diverse range of weather
               and climate-related markets worldwide, wherever reliable data can
@@ -122,16 +149,14 @@ export function Footer() {
             @&nbsp;2024&nbsp;-&nbsp;2025
           </div>
           <div className="flex w-full justify-between sm:w-auto flex-row items-center gap-4">
-            <Tooltip>
-              <TooltipTrigger>
-                <div className="text-sm font-medium text-[#515670] cursor-pointer">
-                  Terms of Use
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Coming soon</p>
-              </TooltipContent>
-            </Tooltip>
+            <div
+              className="text-sm font-medium text-[#515670] cursor-pointer"
+              onClick={() => {
+                router.push("/about-us/terms")
+              }}
+            >
+              Terms of Use
+            </div>
             <Tooltip>
               <TooltipTrigger>
                 <div className="text-sm font-medium text-[#515670] cursor-pointer">

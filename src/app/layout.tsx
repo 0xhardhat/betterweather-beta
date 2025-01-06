@@ -7,6 +7,7 @@ import Provider from "@/providers";
 import { Toaster } from "@/components/ui/toaster";
 import { Navbar } from "@/components/navbar";
 import Footerpad from "@/components/footerpad";
+import { Footer } from "@/components/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,7 +50,10 @@ export default function RootLayout({
       >
         <Provider>
           <Navbar />
-          {children}
+          <div className="z-4 w-full min-h-screen flex flex-col bg-background bg-background-light dark:bg-background-dark relative overflow-x-hidden overflow-y-hidden">
+            <div className="flex-grow">{children}</div>
+            <Footer />
+          </div>
           <Footerpad />
         </Provider>
         <Toaster />
