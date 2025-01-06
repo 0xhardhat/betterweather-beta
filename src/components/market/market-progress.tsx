@@ -24,7 +24,7 @@ export function MarketProgress({
         <span className="flex items-center gap-x-2 gap-y-1 flex-wrap justify-between">
           <span
             className={`font-bold text-sm ${
-              yesPercentage >= 50 ? "text-[#6ddaba]" : ""
+              yesPercentage >= 50 ? "text-[#239c79] dark:text-[#6ddaba]" : ""
             }`}
           >
             <span className={`${yesPercentage > 50 ? "" : "text-gray-500"}`}>
@@ -45,7 +45,7 @@ export function MarketProgress({
         <span className="flex items-center gap-x-2 gap-y-1 flex-wrap justify-between">
           <span
             className={`font-bold text-sm ${
-              yesPercentage < 50 ? "text-[#ff8989]" : ""
+              yesPercentage < 50 ? "text-[#D65959] dark:text-[#ff8989]" : ""
             }`}
           >
             <span className={`${yesPercentage > 50 ? "text-gray-500" : ""}`}>

@@ -190,7 +190,7 @@ export function MarketCard({ index, filter, category }: MarketCardProps) {
                   />
                 )}
                 <div className="w-full flex flex-col items-start">
-                  <div className="w-full flex flex-col gap-4 md:gap-1 md:flex-row justify-between">
+                  <div className="w-full flex flex-col gap-4 md:gap-1 md:flex-row md:justify-between">
                     <CustomCardTitle>{market?.question}</CustomCardTitle>
                     {market && (
                       <CustomMarketProgress

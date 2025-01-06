@@ -10,7 +10,7 @@ const CustomCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "w-full flex flex-col justify-between rounded-lg border-none bg-card text-card-foreground shadow-sm hover:bg-gray-200 cursor-pointer dark:bg-[#191B26] dark:hover:bg-[#212431] overflow-hidden transition-transform duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg ",
+      "w-full flex flex-col justify-between rounded-lg border-none bg-card text-card-foreground shadow-sm cursor-pointer bg-[#dadcef] hover:bg-[#e6e7f7] dark:bg-[#191B26] dark:hover:bg-[#212431] overflow-hidden transition-transform duration-500 ease-in-out transform hover:-translate-y-3 hover:shadow-lg ",
       className
     )}
     {...props}
@@ -34,7 +34,7 @@ const CustomCardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <div className="flex flex-row items-center gap-5">
+  <div className="flex flex-row md:flex-grow items-center gap-5">
     <Image
       src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
       alt="placeholder"
@@ -45,7 +45,7 @@ const CustomCardTitle = React.forwardRef<
     <h3
       ref={ref}
       className={cn(
-        "text-base font-medium leading-6 tracking-tight line-clamp-3",
+        "text-base font-medium leading-6 tracking-tight line-clamp-3 text-wrap",
         className
       )}
       {...props}

@@ -71,7 +71,7 @@ export function MarketSharesDisplay({
     <div className="flex flex-col gap-2">
       <div className="w-full text-sm text-muted-foreground">
         Your shares:&nbsp;
-        <span className="text-[#F9FCFF]">
+        <span className="text-[#1B1F24] dark:text-[#F9FCFF]">
           {market.optionA} -{" "}
           {Math.floor(parseInt(toEther(sharesBalance?.optionAShares)))},{" "}
           {market.optionB} -{" "}

@@ -19,7 +19,7 @@ export function CustomMarketProgress({
     totalShares > 0 ? (Number(totalOptionAShares) / totalShares) * 100 : 50;
 
   return (
-    <div className="w-full md:w-40">
+    <div className="w-full md:max-w-40">
       <div className="w-full flex flex-row justify-between mb-2 items-center">
         <span className="flex items-center gap-x-2 gap-y-1 flex-wrap justify-between">
           <span

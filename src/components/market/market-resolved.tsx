@@ -132,16 +132,16 @@ export function MarketResolved({
             Resolved as "{outcome === 1 ? optionA : optionB}"
           </div>
           <Button
-            className="w-[50%] sm:w-40 h-14 rounded-none rounded-r-lg sm:rounded-r-lg dark:bg-[#1B1E2B] dark:hover:bg-[#1B1E2B] text-[#F9FCFF] dark:hover:text-[#6DDABA] text-xs"
+            className="w-[50%] sm:w-40 h-14 rounded-none rounded-r-lg sm:rounded-r-lg bg-[#dadcef7c] dark:bg-[#1B1E2B] dark:hover:bg-[#1B1E2B] text-[#1B1F24] dark:text-[#F9FCFF] dark:hover:text-[#6DDABA] text-xs"
             onClick={handleClaimRewards}
             disabled={!isthereRewards(outcome)}
           >
             {isthereRewards(outcome) ? "Claim Rewards" : "No Rewards"}
           </Button>
         </div>
-        <div className="hidden sm:flex text-sm text-muted-foreground">
+        <div className="hidden sm:flex text-[#515670] text-sm dark:text-muted-foreground">
           Your shares:&nbsp;
-          <span className="text-[#F9FCFF]">
+          <span className="text-[#1B1F24] dark:text-[#F9FCFF]">
             {market.optionA} -{" "}
             {Math.floor(parseInt(toEther(sharesbalance?.optionAShares)))},{" "}
             {market.optionB} -{" "}
