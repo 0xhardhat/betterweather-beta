@@ -120,7 +120,7 @@ export function Navbar() {
           <Image
             width={142}
             height={43}
-            src="/HNY-BW.svg"
+            src="/BW-logo-navbar.svg"
             alt="logo in dark theme"
             className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer hidden dark:flex"
             onClick={() => {
@@ -130,7 +130,7 @@ export function Navbar() {
           <Image
             width={142}
             height={43}
-            src="/BW-logo-light.svg"
+            src="/BW-logo-navbar-light.svg"
             alt="logo in dark theme"
             className="lg:w-[120px] lg:h-auto w-[142px] h-auto cursor-pointer flex dark:hidden"
             onClick={() => {

@@ -127,17 +127,17 @@ export const FAQ_data = [
   {
     question: "Can I sell early?",
     answer:
-      "USDC provides a stable and widely accepted currency for transparent and secure transactions.",
+      "We do not currently have this function, but we are working on integrating it in the future.",
   },
   {
     question: "Does Better Weather have a token?",
     answer:
-      "USDC provides a stable and widely accepted currency for transparent and secure transactions.",
+      "Better Weather is considering launching a token, but there is currently no token minted by us. All tokens with the name Better Weather are not affiliated with us.",
   },
   {
     question: "How do i contact support?",
     answer:
-      "USDC provides a stable and widely accepted currency for transparent and secure transactions.",
+      "How do I contact support? = Email betterweatherbiz@gmail.com for inquiries.",
   },
 ];
 
