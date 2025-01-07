@@ -51,7 +51,7 @@ const AboutUs_section = () => {
                 <div className="text-xl text-[#1B1F24] dark:text-[#f8fbff] font-semibold">
                   {item.title}
                 </div>
-                <div className="text-sm font-medium text-[#51556f]">
+                <div className="text-sm font-bold text-[#51556f]">
                   {item.description}
                 </div>
               </div>
