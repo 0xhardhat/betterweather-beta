@@ -1,6 +1,6 @@
 import { Badge } from "../ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Progress } from "../ui/progress";
+// import { Progress } from "../ui/progress";
 
 export function MarketCardSkeleton() {
   return (
@@ -19,7 +19,7 @@ export function MarketCardSkeleton() {
               <span className="bg-gray-200 h-4 w-1/4 rounded-md" />
               <span className="bg-gray-200 h-4 w-1/4 rounded-md" />
             </div>
-            <Progress value={0} className="h-2 bg-gray-200" />
+            {/* <Progress value={0} className="h-2 bg-gray-200" /> */}
           </div>
         </CardContent>
       </div>

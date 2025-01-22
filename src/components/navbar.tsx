@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { Sun, Moon, List } from "lucide-react";
+import { Sun, Moon, List, Loader2 } from "lucide-react";
 import {
   ConnectButton,
   darkTheme,
@@ -13,15 +12,14 @@ import {
 import { base } from "thirdweb/chains";
 import { createWallet } from "thirdweb/wallets";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { useAtom } from "jotai";
-import { themeAtom } from "@/store";
 
+import { themeAtom } from "@/store";
 import { client } from "@/app/client";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import routes from "@/constants/route";
 import { SearchBar } from "./search-bar";
@@ -104,6 +102,10 @@ export function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("account info----->", account);
+  }, [account]);
+
   return (
     <TooltipProvider>
       {/* <div className="flex flex-row justify-between items-center px-5 mb-6 gap-4 md:gap-0 lg:px-10 lg:gap-0 fixed mt-0 h-20 w-full max-w-[1600px] top-0 self-center bg-transparent z-20 backdrop-blur-sm backdrop-filter"> */}
@@ -181,7 +183,7 @@ export function Navbar() {
                     // backgroundColor: "#39997D",
                     // radial-gradient(43.46% 30.28% at 32.58% 18.17%, #6DDABA 0%, #39997D 100%)
                     backgroundColor: account ? "transparent" : "#39997D",
-                    borderRadius: "12px",
+                    borderRadius: "8px",
                   },
                   label: "Sign In",
                 }}
