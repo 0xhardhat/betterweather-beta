@@ -1,7 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  // useRef,
+  useState,
+} from "react";
 import AboutUs_section from "./aboutus-section";
 import Howtouse_section from "./howtouse-section";
 import Image from "next/image";
@@ -71,12 +75,12 @@ const AboutUs = () => {
   //   "Why Bet on Weather?": useRef<HTMLElement>(null),
   //   "Why Choose Better Weather?": useRef<HTMLElement>(null),
   // };
-  //  const scrollToSection = (title: SectionTitle) => {  
-  //   if (sectionRefs[title].current) {  
-  //     sectionRefs[title].current.scrollIntoView({ behavior: "smooth" });  
-  //     setSection(title);  
-  //   }  
-  // };  
+  //  const scrollToSection = (title: SectionTitle) => {
+  //   if (sectionRefs[title].current) {
+  //     sectionRefs[title].current.scrollIntoView({ behavior: "smooth" });
+  //     setSection(title);
+  //   }
+  // };
 
   useEffect(() => {
     setSection("What is BetterWeather?");
