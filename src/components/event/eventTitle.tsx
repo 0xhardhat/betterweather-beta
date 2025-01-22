@@ -60,7 +60,7 @@ const EventTitle = () => {
           height={88}
           className="w-20 h-20 cursor-pointer rounded-lg"
         />
-        <div className="text-[#f8fbff] text-xl sm:text-3xl font-medium">
+        <div className="text-[#1B1F24] dark:text-[#f8fbff] text-xl sm:text-3xl font-medium">
           This market will resolve if Death Valley CA reaches a temperature
           above 130 before Dec 31, 2025
         </div>

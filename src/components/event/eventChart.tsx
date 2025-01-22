@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { themeAtom } from "@/store";
+import { useAtom } from "jotai";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const filterdata = [
@@ -16,6 +18,7 @@ const filterdata = [
 ];
 
 const EventChart = () => {
+  const [themecolor, setThemecolor] = useAtom(themeAtom);
   const chartConfig = {
     type: "line" as const,
     series: [
@@ -112,17 +115,32 @@ const EventChart = () => {
         <div className="w-full flex flex-row justify-between">
           <div className="flex flex-col items-start">
             <div className="text-[#515670] text-base font-semibold">Yes</div>
-            <div className="text-[#f8fbff] text-2xl font-medium">
+            <div className="text-[#1B1F24] dark:text-[#f8fbff] text-2xl font-medium">
               10% Chance
             </div>
           </div>
-          <Image
-            src="/BW-logo-event.svg"
-            alt="star"
-            width={142}
-            height={43}
-            className="cursor-pointer hidden sm:flex"
-          />
+          {/* <div className="flex dark:hidden"> */}
+          {themecolor == "dark" && (
+            <Image
+              src="/BW-logo-event.svg"
+              alt="star"
+              width={142}
+              height={43}
+              className="cursor-pointer hidden sm:flex"
+            />
+          )}
+          {/* </div> */}
+          {/* <div className="hidden dark:flex"> */}
+          {themecolor == "light" && (
+            <Image
+              src="/BW-logo-event-light.svg"
+              alt="star"
+              width={142}
+              height={43}
+              className="cursor-pointer hidden sm:flex"
+            />
+          )}
+          {/* </div> */}
           <div className="flex sm:hidden flex-row items-center gap-8">
             <Image
               src="/event/list.svg"

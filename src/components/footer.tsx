@@ -1,16 +1,17 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import { Instagram, X } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useRouter } from "next/navigation";
-import { Instagram, X } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import { useTheme } from "next-themes";
-import Image from "next/image";
+
 
 export function Footer() {
   const router = useRouter();
