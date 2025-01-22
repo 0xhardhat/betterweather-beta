@@ -1,7 +1,10 @@
+'use client'
+
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -33,25 +36,31 @@ CardHeader.displayName = "CardHeader";
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <div className="flex flex-row justify-between items-stretch pt-3 gap-2">
-    <h3
-      ref={ref}
-      className={cn(
-        "text-base font-medium leading-6 tracking-tight line-clamp-3",
-        className
-      )}
-      {...props}
-    />
-    <Image
-      src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
-      alt="placeholder"
-      width={48}
-      height={48}
-      className="h-12 w-12 rounded-lg"
-    />
-  </div>
-));
+>(({ className, ...props }, ref) => {
+  const router = useRouter();
+  return (
+    <div className="flex flex-row justify-between items-stretch pt-3 gap-2">
+      <h3
+        ref={ref}
+        className={cn(
+          "text-base font-medium leading-6 tracking-tight line-clamp-3 hover:underline hover:dark:text-[#6DDABA] hover:text-[#39997D]",
+          className
+        )}
+        onClick={() => {
+          router.push("/event");
+        }}
+        {...props}
+      />
+      <Image
+        src="https://res.cloudinary.com/dq9alywlv/image/upload/v1726336180/samples/landscapes/nature-mountains.jpg"
+        alt="placeholder"
+        width={48}
+        height={48}
+        className="h-12 w-12 rounded-lg"
+      />
+    </div>
+  );
+});
 CardTitle.displayName = "CardTitle";
 
 const CardDescription = React.forwardRef<

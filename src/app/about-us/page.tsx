@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AboutUs_section from "./aboutus-section";
 import Howtouse_section from "./howtouse-section";
 import Image from "next/image";
@@ -56,8 +56,28 @@ const docs: Docs = {
   ],
 };
 
+// Define a union type for section titles
+// type SectionTitle =
+//   | "What is BetterWeather?"
+//   | "How Does Better Weather Work?"
+//   | "Why Bet on Weather?"
+//   | "Why Choose Better Weather?";
+
 const AboutUs = () => {
   const [section, setSection] = useState<string>("What is BetterWeather?");
+  // const sectionRefs = {
+  //   "What is BetterWeather?": useRef<HTMLElement>(null),
+  //   "How Does Better Weather Work?": useRef<HTMLElement>(null),
+  //   "Why Bet on Weather?": useRef<HTMLElement>(null),
+  //   "Why Choose Better Weather?": useRef<HTMLElement>(null),
+  // };
+  //  const scrollToSection = (title: SectionTitle) => {  
+  //   if (sectionRefs[title].current) {  
+  //     sectionRefs[title].current.scrollIntoView({ behavior: "smooth" });  
+  //     setSection(title);  
+  //   }  
+  // };  
+
   useEffect(() => {
     setSection("What is BetterWeather?");
   }, []);

@@ -136,7 +136,7 @@ export function EnhancedPredictionMarketDashboard() {
           {/* market section  */}
           <div
             // className="mt-10"
-            className="z-10 mt-10 bg-no-repeat bg-custom-size-resolvebg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top"
+            className="z-10 mt-10 bg-no-repeat bg-custom-size-resolve bg-mobile bg-center sm:bg-custom-size-resolvebg sm:bg-right-top"
           >
             {isLoadingMarketCount ? (
               <div className="mt-6">
