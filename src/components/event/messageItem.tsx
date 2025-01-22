@@ -14,7 +14,7 @@ const MessageItem = () => {
         <div className="flex flex-grow flex-row justify-between">
           <div className="flex flex-col items-start gap-2">
             <div className="flex flex-row items-center gap-2">
-              <div className="text-[#f8fbff] text-base font-semibold">
+              <div className="text-[#1B1F24] dark:text-[#f8fbff] text-base font-semibold">
                 Johanthan
               </div>
               <div className="text-[#51556f] text-sm font-medium">2min ago</div>

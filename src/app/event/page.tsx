@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+
 import { BuysellModal } from "@/components/event/buyModal";
 import EventTitle from "@/components/event/eventTitle";
 import EventChart from "@/components/event/eventChart";
 import { CommentInput } from "@/components/event/commentInput";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -17,13 +19,34 @@ import MessageItem from "@/components/event/messageItem";
 const Event = () => {
   return (
     <>
-      <div className="w-full flex flex-row justify-between items-start container mx-auto p-4 z-10 mt-28 gap-10">
+      <div className="w-full flex flex-row justify-between items-start container mx-auto p-4 z-10 mt-28 gap-10 relative">
+        <Image
+          width={1076}
+          height={660}
+          alt="market-block image"
+          src="https://res.cloudinary.com/dq9alywlv/image/upload/v1737574399/event-background_ohf9eb.png"
+          className="z-10 absolute hidden top-[-35px] left-[-240px] sm:top-[-112px] lg:flex min-h-[1000px] min-w-[1630px]"
+        />
+        <Image
+          width={875}
+          height={536}
+          alt="market-block image"
+          src="https://res.cloudinary.com/dq9alywlv/image/upload/v1737574411/event-background-tablet_kvgzsy.png"
+          className="z-10 absolute hidden sm:flex lg:hidden top-[-35px] left-[-240px] sm:top-[-112px] min-h-[700px] min-w-[1142px]"
+        />
+        <Image
+          width={651}
+          height={400}
+          alt="market-block image"
+          src="https://res.cloudinary.com/dq9alywlv/image/upload/v1737574422/event-background-mobile_ckqxe9.png"
+          className="z-10 absolute flex top-[-180px] left-0 sm:hidden min-h-[401px] min-w-[651px]"
+        />
         <div className="flex w-full lg:flex-grow flex-col items-start gap-10 overflow-x-hidden">
           <EventTitle />
           <EventChart />
           <div className="flex w-full flex-col items-center gap-12">
             <div className="flex w-full flex-col gap-8 sm:flex-row sm:justify-between items-center">
-              <div className="text-[#f8fbff] text-3xl font-medium">
+              <div className="text-[#1B1F24] dark:text-[#f8fbff] text-3xl font-medium">
                 Comments
               </div>
               <div className="flex flex-row items-center gap-10">

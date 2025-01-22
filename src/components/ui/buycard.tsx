@@ -10,7 +10,7 @@ const BuyCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "z-10 flex flex-col justify-between rounded-lg border-[1px] border-[#24293A] bg-card text-card-foreground shadow-sm bg-[#dadcef] hover:bg-[#e6e7f7] dark:bg-[#11121C] overflow-hidden transition-transform duration-500",
+      "z-10 flex flex-col justify-between rounded-lg border-[1px] border-[#E6E8F8] dark:border-[#24293A] bg-card text-card-foreground shadow-sm bg-[#dadcef] hover:bg-[#e6e7f7] dark:bg-[#11121C] overflow-hidden transition-transform duration-500",
       className
     )}
     {...props}
@@ -67,7 +67,14 @@ const BuyCardTitle = React.forwardRef<
         alt="placeholder"
         width={24}
         height={24}
-        className="w-6 h-6 transition-transform duration-500 cursor-pointer"
+        className="w-6 h-6 transition-transform duration-500 cursor-pointer hidden dark:flex"
+      />
+      <Image
+        src="/event/refresh-light.svg"
+        alt="placeholder"
+        width={24}
+        height={24}
+        className="w-6 h-6 transition-transform duration-500 cursor-pointer flex dark:hidden"
       />
     </div>
   );

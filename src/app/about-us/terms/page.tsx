@@ -10,10 +10,10 @@ const Terms_of_use = () => {
     <>
       <div className="w-full flex flex-col items-center gap-12 px-4 md:px-14 lg:px-56 mb-2 sm:mb-16 mt-28">
         <div className="flex flex-col items-center">
-          <div className="text-[#6ddaba] text-sm font-semibold">
+          <div className="text-[#39997D] dark:text-[#6ddaba] text-sm font-semibold">
             Terms of Use
           </div>
-          <div className="text-[#f8fbff] text-4xl font-medium">
+          <div className="text-[#1B1F24] dark:text-[#f8fbff] text-4xl font-medium">
             Better Weather
           </div>
         </div>

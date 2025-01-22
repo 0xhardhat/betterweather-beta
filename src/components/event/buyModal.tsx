@@ -1,5 +1,10 @@
 "use client";
 
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
 import {
   BuyCard,
   BuyCardContent,
@@ -15,13 +20,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
 import { EventamountInput } from "../ui/detailinput";
 
 export const BuysellModal = () => {
   const isLoadingMarketData = false;
+  const router = useRouter();
   const [option_buy_or_sell, setOption_buy_or_sell] = useState<string>("buy");
   const [option_yes_or_no, setOption_yes_or_no] = useState<string>("yes");
   return (
@@ -39,7 +42,7 @@ export const BuysellModal = () => {
               <div className="w-full flex flex-row justify-between items-center">
                 <div className="flex flex-row gap-6 items-center">
                   <div
-                    className="flex flex-row items-center gap-4"
+                    className="flex flex-row items-center gap-4 cursor-pointer"
                     onClick={() => {
                       setOption_buy_or_sell("buy");
                     }}
@@ -56,17 +59,17 @@ export const BuysellModal = () => {
                       // className="rounded-lg"
                     />
                     <div
-                      className={`text-[#F9FCFF] ${
+                      className={` ${
                         option_buy_or_sell == "buy"
-                          ? "text-3xl font-medium"
-                          : "text-base"
+                          ? "text-3xl font-medium text-[#1B1F24] dark:text-[#F9FCFF]"
+                          : "text-base text-[#515670] dark:text-[#F9FCFF]"
                       }`}
                     >
                       Buy
                     </div>
                   </div>
                   <div
-                    className="flex flex-row items-center gap-4"
+                    className="flex flex-row items-center gap-4 cursor-pointer"
                     onClick={() => {
                       setOption_buy_or_sell("sell");
                     }}
@@ -83,10 +86,10 @@ export const BuysellModal = () => {
                       // className="rounded-lg"
                     />
                     <div
-                      className={`text-[#F9FCFF] ${
+                      className={`${
                         option_buy_or_sell == "sell"
-                          ? "text-3xl font-medium"
-                          : "text-base"
+                          ? "text-3xl font-medium text-[#1B1F24] dark:text-[#F9FCFF]"
+                          : "text-base text-[#515670] dark:text-[#F9FCFF]"
                       }`}
                     >
                       Sell
@@ -128,7 +131,7 @@ export const BuysellModal = () => {
                     className={`h-12 w-48 px-[40px] py-[17px]  text-sm rounded-lg ${
                       option_yes_or_no == "yes"
                         ? "bg-gradient-to-r from-[#6DDABA] to-[#39997D] text-[#F9FCFF]"
-                        : "dark:bg-[#191B26] text-[#515670]"
+                        : "bg-[#DADCEF] dark:bg-[#191B26] text-[#515670]"
                     }`}
                     onClick={() => {
                       setOption_yes_or_no("yes");
@@ -140,7 +143,7 @@ export const BuysellModal = () => {
                     className={`h-12 w-48 px-[40px] py-[17px] dark:bg-[#191B26] text-sm rounded-lg ${
                       option_yes_or_no == "no"
                         ? "bg-gradient-to-r from-[#FF8989] to-[#D65959] text-[#F9FCFF]"
-                        : "dark:bg-[#191B26] text-[#515670]"
+                        : "bg-[#DADCEF] dark:bg-[#191B26] text-[#515670]"
                     }`}
                     onClick={() => setOption_yes_or_no("no")}
                   >
@@ -159,6 +162,7 @@ export const BuysellModal = () => {
                     <EventamountInput
                       type="number"
                       step="1"
+                      min="0"
                       placeholder="Enter amount"
                       // value={amount}
                       // onChange={(e) => {
@@ -187,7 +191,7 @@ export const BuysellModal = () => {
                   <div className="text-[#787ea0] text-base font-semibold">
                     Avg Price
                   </div>
-                  <div className="text-[#dcdfe3] text-base font-semibold">
+                  <div className="text-[#1B1F24] dark:text-[#dcdfe3] text-base font-semibold">
                     $ 0.0
                   </div>
                 </div>
@@ -195,7 +199,7 @@ export const BuysellModal = () => {
                   <div className="text-[#787ea0] text-base font-semibold">
                     Shares
                   </div>
-                  <div className="text-[#dcdfe3] text-base font-semibold">
+                  <div className="text-[#1B1F24] dark:text-[#dcdfe3] text-base font-semibold">
                     0.00
                   </div>
                 </div>
@@ -203,7 +207,7 @@ export const BuysellModal = () => {
                   <div className="text-[#787ea0] text-base font-semibold">
                     Potential Return
                   </div>
-                  <div className="text-[#dcdfe3] text-base font-semibold">
+                  <div className="text-[#1B1F24] dark:text-[#dcdfe3] text-base font-semibold">
                     $ 0.00(0.00%)
                   </div>
                 </div>
@@ -214,7 +218,12 @@ export const BuysellModal = () => {
               >
                 Login
               </Button>
-              <div className="text-[#787ea0] text-base font-semibold underline">
+              <div
+                className="text-[#787ea0] text-base font-semibold underline cursor-pointer"
+                onClick={() => {
+                  router.push("/about-us/terms");
+                }}
+              >
                 Terms of Use
               </div>
             </div>
