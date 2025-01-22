@@ -18,7 +18,7 @@ const filterdata = [
 ];
 
 const EventChart = () => {
-  const [themecolor, setThemecolor] = useAtom(themeAtom);
+  const [themecolor] = useAtom(themeAtom);
   const chartConfig = {
     type: "line" as const,
     series: [
